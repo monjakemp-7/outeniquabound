@@ -46,3 +46,12 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Vercel
+
+`vercel.json` sets `"framework": "nextjs"` so Git deploys use the Next.js builder, not a static `public/` upload.
+
+In the project **Settings → Build and Deployment**:
+- Framework Preset: **Next.js**
+- Root Directory: empty
+- Output Directory: **empty** (do not set `public` or `.next`)
