@@ -63,6 +63,7 @@ export default function SecondSummitPage() {
             width={160}
             height={200}
             className="mb-6 h-32 w-auto object-contain drop-shadow-sm"
+            unoptimized
           />
           <h1 className="max-w-4xl font-display text-5xl leading-none md:text-7xl">
             Give gear a second life. Earn another turn.

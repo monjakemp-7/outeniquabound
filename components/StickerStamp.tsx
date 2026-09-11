@@ -51,6 +51,7 @@ export function StickerStamp({
       height={size}
       aria-hidden
       draggable={false}
+      unoptimized
       className={`pointer-events-none select-none object-contain ${className}`}
       style={{ transform: `rotate(${rotate}deg)`, opacity }}
     />
