@@ -60,9 +60,9 @@ export default function SecondSummitPage() {
           <Image
             src={stickerIfPresent(STICKERS.secondSummit) ?? ASSETS.secondSummitLogo}
             alt="Second Summit"
-            width={220}
-            height={80}
-            className="mb-6 h-auto w-48 object-contain"
+            width={160}
+            height={200}
+            className="mb-6 h-32 w-auto object-contain drop-shadow-sm"
           />
           <h1 className="max-w-4xl font-display text-5xl leading-none md:text-7xl">
             Give gear a second life. Earn another turn.
@@ -88,6 +88,13 @@ export default function SecondSummitPage() {
           rotate={7}
           size={80}
         />
+        <StickerStamp
+          src={STICKERS.obMark}
+          className="absolute right-24 bottom-8 hidden lg:block"
+          rotate={10}
+          size={64}
+          opacity={0.95}
+        />
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <p className="stamp text-earth">Second your gear</p>
@@ -106,8 +113,12 @@ export default function SecondSummitPage() {
             <p className="mt-4 font-serif text-lg leading-relaxed text-mountain/80">
               Choose graded gear with plenty of life left. A smarter buy for
               you, a lighter footprint for the hills. Less new production.
-              Less waste. More days out. We’ll roll out an online Second
-              Summit system in due course.
+              Less waste. More days out. Second your gear, or find pre-loved
+              at Trail Kiosk. We’ll roll out an online Second Summit system in
+              due course.
+            </p>
+            <p className="mt-4 font-serif text-lg italic text-mountain/75">
+              Because not every outing is big. Most of them aren’t.
             </p>
           </div>
         </div>
@@ -135,7 +146,19 @@ export default function SecondSummitPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+        <StickerStamp
+          src={STICKERS.pepsiPools}
+          className="absolute right-6 -top-2 hidden md:block"
+          rotate={-11}
+          size={70}
+        />
+        <StickerStamp
+          src={STICKERS.tonnelbos}
+          className="absolute left-0 bottom-6 hidden lg:block"
+          rotate={8}
+          size={74}
+        />
         <h2 className="font-display text-5xl">Step by step</h2>
         <ol className="mt-8 grid gap-4 md:grid-cols-5">
           {STEPS.map((step, i) => (

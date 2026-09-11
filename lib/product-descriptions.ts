@@ -138,6 +138,28 @@ const BAG_COPY: Omit<ProductCopy, "sku"> = {
   facts: ["Second Summit / circular materials"],
 };
 
+const NAME_HINTS: [RegExp, string][] = [
+  [/summit[-\s]*tee/i, "OB00008"],
+  [/contour[-\s]*tee/i, "OB00009"],
+  [/keurberg/i, "OB00010"],
+  [/geelhout/i, "OB00011"],
+  [/traverse/i, "OB00002"],
+  [/heritage/i, "OB00004"],
+  [/summit[-\s]*hoodie/i, "OB00003"],
+  [/trail[-\s]*tee/i, "OB00012"],
+  [/fynbos[-\s]*tee/i, "OB00013"],
+  [/coastline/i, "OB00005"],
+  [/moonrise/i, "OB00006"],
+  [/summit[-\s]*buff/i, "OB00020"],
+  [/george[-\s]*peak/i, "OB00021"],
+  [/explorer[-\s]*buff/i, "OB00022"],
+  [/wild[-\s]*lily/i, "OB00023"],
+  [/summit[-\s]*socks/i, "OB00024"],
+  [/contour[-\s]*socks/i, "OB00025"],
+  [/peak[-\s]*route/i, "OB00026"],
+  [/wild[-\s]*flora/i, "OB00027"],
+  [/fynbos[-\s]*bloom/i, "OB00028"],
+];
 function skuStem(sku: string) {
   const compact = sku.toUpperCase().replace(/[^A-Z0-9]/g, "");
   return compact.match(/^(OB\d{5})/)?.[1] ?? "";
@@ -151,10 +173,15 @@ function isEventSku(product: WooProduct) {
 export function productCopy(product: WooProduct): ProductCopy | null {
   if (isEventSku(product)) return null;
   const stem = skuStem(product.sku || "");
-  if (!stem) return null;
-  const numbered = Number(stem.slice(2));
-  const found = BY_SKU[stem];
-  if (found) return { sku: stem, ...found };
-  if (numbered >= 29 && numbered <= 39) return { sku: stem, ...BAG_COPY };
+  if (stem) {
+    const numbered = Number(stem.slice(2));
+    const found = BY_SKU[stem];
+    if (found) return { sku: stem, ...found };
+    if (numbered >= 29 && numbered <= 39) return { sku: stem, ...BAG_COPY };
+  }
+  const hay = `${product.name} ${product.slug}`;
+  for (const [re, sku] of NAME_HINTS) {
+    if (re.test(hay) && BY_SKU[sku]) return { sku, ...BY_SKU[sku] };
+  }
   return null;
 }

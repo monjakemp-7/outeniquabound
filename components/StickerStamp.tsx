@@ -22,6 +22,7 @@ export const STICKERS = {
   craddockPeak: "/images/stickers/craddock-peak.png",
   tierkop: "/images/stickers/tierkop.png",
   montaguPass: "/images/stickers/montagu-pass.png",
+  obMark: "/images/stickers/ob-mark.png",
 } as const;
 
 export function stickerIfPresent(src: string) {
@@ -33,11 +34,13 @@ export function StickerStamp({
   className = "",
   rotate = -8,
   size = 92,
+  opacity = 1,
 }: {
   src: string;
   className?: string;
   rotate?: number;
   size?: number;
+  opacity?: number;
 }) {
   if (!assetOnDisk(src)) return null;
   return (
@@ -48,8 +51,8 @@ export function StickerStamp({
       height={size}
       aria-hidden
       draggable={false}
-      className={`pointer-events-none select-none ${className}`}
-      style={{ transform: `rotate(${rotate}deg)` }}
+      className={`pointer-events-none select-none object-contain ${className}`}
+      style={{ transform: `rotate(${rotate}deg)`, opacity }}
     />
   );
 }
@@ -59,8 +62,10 @@ const PLACE_STAMPS: { test: RegExp; src: string }[] = [
   { test: /keurberg|keurkop/i, src: STICKERS.keurkop },
   { test: /geelhout|yellow.?wood/i, src: STICKERS.yellowWood },
   { test: /fynbos/i, src: STICKERS.yellowWood },
-  { test: /vic.?bay/i, src: STICKERS.vicBay },
+  { test: /coastline|vic.?bay/i, src: STICKERS.vicBay },
+  { test: /summit/i, src: STICKERS.secondSummit },
   { test: /montagu/i, src: STICKERS.montaguPass },
+  { test: /craddock/i, src: STICKERS.craddockPass },
 ];
 
 export function placeStampForProduct(name: string, slug: string) {

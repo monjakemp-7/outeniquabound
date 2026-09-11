@@ -148,6 +148,19 @@ export default function AboutPage() {
             rotate={-10}
             size={72}
           />
+          <StickerStamp
+            src={STICKERS.apieSwaai}
+            className="absolute right-8 bottom-24 hidden lg:block"
+            rotate={6}
+            size={68}
+          />
+          <StickerStamp
+            src={STICKERS.yellowWood}
+            className="absolute left-1/3 top-4 hidden xl:block"
+            rotate={-7}
+            size={64}
+            opacity={0.95}
+          />
           <p className="stamp text-forest">From the field</p>
           <h2 className="mt-3 font-display text-5xl">Notes from the ridge</h2>
           <div className="mt-10 space-y-16">

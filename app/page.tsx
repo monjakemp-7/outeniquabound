@@ -69,12 +69,6 @@ export default async function HomePage() {
           rotate={-9}
           size={88}
         />
-        <StickerStamp
-          src={STICKERS.montaguPass}
-          className="absolute left-6 bottom-8 hidden lg:block"
-          rotate={8}
-          size={72}
-        />
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="stamp text-sky">01 · Paths</p>
           <h2 className="mt-3 font-display text-5xl md:text-6xl">
@@ -104,7 +98,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+      <section className="relative mx-auto max-w-6xl px-4 py-20 md:px-6">
+        <StickerStamp
+          src={STICKERS.obMark}
+          className="absolute -right-1 -top-3 hidden lg:block"
+          rotate={-7}
+          size={70}
+        />
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="stamp text-forest">02 · Kit</p>
