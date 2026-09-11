@@ -59,12 +59,12 @@ export default async function ProductPage({
           {stamp ? (
             <StickerStamp
               src={stamp}
-              className="absolute -right-2 -top-8 hidden md:block"
+              className="absolute right-0 -top-14 hidden md:block"
               rotate={11}
-              size={84}
+              size={64}
             />
           ) : null}
-          <h1 className="font-display text-5xl leading-none md:text-6xl">
+          <h1 className={`font-display text-5xl leading-none md:text-6xl ${stamp ? "md:pr-20" : ""}`}>
             {name}
           </h1>
           <p className="mt-4 font-serif text-2xl text-earth">

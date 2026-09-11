@@ -61,7 +61,7 @@ export default function AboutPage() {
         />
         <StickerStamp
           src={STICKERS.sevenPasses}
-          className="absolute -left-3 bottom-6 hidden lg:block"
+          className="absolute -left-3 top-10 hidden lg:block"
           rotate={10}
           size={74}
         />
