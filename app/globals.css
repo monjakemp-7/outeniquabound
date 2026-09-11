@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --mountain: #192315;
+  --sand: #fff1e4;
+  --earth: #e86028;
+  --sky: #4dc2c4;
+  --sun: #f8b11a;
+  --forest: #546f3e;
+}
+
+@theme inline {
+  --color-mountain: var(--mountain);
+  --color-sand: var(--sand);
+  --color-earth: var(--earth);
+  --color-sky: var(--sky);
+  --color-sun: var(--sun);
+  --color-forest: var(--forest);
+  --font-display: var(--font-bebas);
+  --font-serif: var(--font-fraunces);
+  --font-body: var(--font-baskerville);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--sand);
+  color: var(--mountain);
+  font-family: var(--font-body), "Libre Baskerville", Georgia, serif;
+  min-height: 100%;
+}
+
+::selection {
+  background: var(--sun);
+  color: var(--mountain);
+}
+
+.font-display {
+  font-family: var(--font-display), "Bebas Neue", Impact, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Fraunces, Georgia, serif;
+}
+
+.field-grain {
+  background-image:
+    radial-gradient(rgba(25, 35, 21, 0.035) 0.6px, transparent 0.6px),
+    linear-gradient(180deg, rgba(255, 241, 228, 0.2), rgba(255, 241, 228, 0));
+  background-size: 3px 3px, auto;
+}
+
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--mountain),
+    transparent
+  );
+  height: 1px;
+  opacity: 0.18;
+}
+
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid currentColor;
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-display), "Bebas Neue", sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.prose-field p {
+  margin-bottom: 1rem;
+}
+
+.prose-field b,
+.prose-field strong {
+  font-family: var(--font-serif), Fraunces, serif;
+}

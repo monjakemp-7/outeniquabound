@@ -1,0 +1,85 @@
+import Image from "next/image";
+import Link from "next/link";
+import { CONTACT, SOCIAL } from "@/lib/constants";
+
+export function Footer() {
+  return (
+    <footer className="mt-auto bg-mountain text-sand">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-4 md:px-6">
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt=""
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-full bg-sand object-contain"
+            />
+            <p className="font-display text-3xl tracking-[0.08em]">
+              Outeniqua Bound
+            </p>
+          </div>
+          <p className="mt-4 max-w-md font-serif text-lg leading-relaxed text-sand/80">
+            Start where you are. Gear for ridgelines, forest trails, and the
+            long way around the Outeniquas.
+          </p>
+          <p className="mt-4 stamp text-sun">Free shipping over R999</p>
+        </div>
+        <div>
+          <p className="font-display text-sm tracking-[0.22em] text-sky">
+            Field notes
+          </p>
+          <ul className="mt-3 space-y-2 font-serif">
+            <li>
+              <Link href="/shop" className="hover:text-sun">
+                Shop
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-sun">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/second-summit" className="hover:text-sun">
+                Second Summit
+              </Link>
+            </li>
+            <li>
+              <Link href="/cart" className="hover:text-sun">
+                Cart
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p className="font-display text-sm tracking-[0.22em] text-sky">
+            Trail kiosk
+          </p>
+          <p className="mt-3 font-serif text-sand/80">{CONTACT.address}</p>
+          <p className="mt-2 font-serif">
+            <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`} className="hover:text-sun">
+              {CONTACT.phone}
+            </a>
+          </p>
+          <p className="font-serif">
+            <a href={`mailto:${CONTACT.email}`} className="hover:text-sun">
+              {CONTACT.email}
+            </a>
+          </p>
+          <div className="mt-4 flex gap-4 font-display text-sm tracking-[0.18em]">
+            <a href={SOCIAL.instagram} target="_blank" rel="noreferrer" className="hover:text-sun">
+              Instagram
+            </a>
+            <a href={SOCIAL.facebook} target="_blank" rel="noreferrer" className="hover:text-sun">
+              Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-sand/15 px-4 py-4 text-center font-display text-xs tracking-[0.2em] text-sand/55">
+        © {new Date().getFullYear()} Outeniqua Bound · George, Western Cape
+      </div>
+    </footer>
+  );
+}
