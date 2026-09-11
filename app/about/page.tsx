@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ASSETS, BRAND_STORY, LIFESTYLE } from "@/lib/constants";
+import { BRAND_STORY } from "@/lib/constants";
+import { aboutHero, homepageStrip, originStill } from "@/lib/product-imagery";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,7 +15,7 @@ export default function AboutPage() {
     <div>
       <section className="relative min-h-[60vh] overflow-hidden bg-mountain text-sand">
         <Image
-          src={ASSETS.heroStill}
+          src={aboutHero()}
           alt="Outeniqua landscape"
           fill
           priority
@@ -52,7 +53,7 @@ export default function AboutPage() {
         </div>
         <div className="relative min-h-[420px] overflow-hidden">
           <Image
-            src={LIFESTYLE[0]}
+            src={originStill()}
             alt="Outeniqua Bound on the trail"
             fill
             className="object-cover"
@@ -90,7 +91,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <h2 className="font-display text-5xl">From the field</h2>
         <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
-          {LIFESTYLE.slice(1, 7).map((src) => (
+          {homepageStrip().slice(0, 6).map((src) => (
             <div key={src} className="relative aspect-[4/5] overflow-hidden">
               <Image
                 src={src}

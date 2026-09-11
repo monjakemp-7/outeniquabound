@@ -52,17 +52,24 @@ export const LIFESTYLE = [
   "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL13.webp",
 ];
 
-export const HOME_CATEGORIES = [
+export const HOME_CATEGORIES: {
+  label: string;
+  href: string;
+  image: string;
+  fallback?: string;
+}[] = [
   {
     label: "Men’s Hoodies",
     href: "/shop?category=hoodies",
-    image:
+    image: "/images/lifestyle/mens-hoodie-summit.jpg",
+    fallback:
       "https://outeniquabound.com/wp-content/uploads/2026/05/Mens-hoodies-may.webp",
   },
   {
     label: "Men’s T-Shirts",
     href: "/shop?category=t-shirts-clothing",
-    image:
+    image: "/images/lifestyle/mens-tee-dark.jpg",
+    fallback:
       "https://outeniquabound.com/wp-content/uploads/2026/05/mens-shirts-may.webp",
   },
   {
@@ -80,13 +87,15 @@ export const HOME_CATEGORIES = [
   {
     label: "Women’s Hoodies",
     href: "/shop?category=hoodies-clothing-womens",
-    image:
+    image: "/images/lifestyle/womens-hoodie-coastline.jpg",
+    fallback:
       "https://outeniquabound.com/wp-content/uploads/2026/05/womens-hoodies-may.webp",
   },
   {
     label: "Women’s T-Shirts",
     href: "/shop?category=t-shirts",
-    image:
+    image: "/images/lifestyle/womens-hoodie-graphic-socks.jpg",
+    fallback:
       "https://outeniquabound.com/wp-content/uploads/2026/05/OB-CAT-Womens-Shirts.webp",
   },
   {
@@ -98,7 +107,8 @@ export const HOME_CATEGORIES = [
   {
     label: "Women’s Socks",
     href: "/shop?category=socks-accessories-womens",
-    image:
+    image: "/images/lifestyle/womens-hoodie-graphic-socks.jpg",
+    fallback:
       "https://outeniquabound.com/wp-content/uploads/2026/05/womens-socks.webp",
   },
 ];

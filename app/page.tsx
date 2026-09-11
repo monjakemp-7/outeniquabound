@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ProductGrid } from "@/components/ProductCard";
+import { ASSETS, BRAND_STORY, HOME_CATEGORIES } from "@/lib/constants";
 import {
-  ASSETS,
-  BRAND_STORY,
-  HOME_CATEGORIES,
-  LIFESTYLE,
-} from "@/lib/constants";
+  categoryTileSrc,
+  heroPoster,
+  homepageStrip,
+  originStill,
+} from "@/lib/product-imagery";
 import { getFeaturedProducts } from "@/lib/woo";
 
 export default async function HomePage() {
@@ -21,7 +22,7 @@ export default async function HomePage() {
           muted
           loop
           playsInline
-          poster={ASSETS.videoPoster}
+          poster={heroPoster()}
         >
           <source src={ASSETS.video} type="video/mp4" />
         </video>
@@ -93,7 +94,7 @@ export default async function HomePage() {
                 className="group relative aspect-[4/3] overflow-hidden"
               >
                 <Image
-                  src={cat.image}
+                  src={categoryTileSrc(cat.image, cat.fallback)}
                   alt={cat.label}
                   fill
                   sizes="(min-width: 1024px) 25vw, 50vw"
@@ -112,7 +113,7 @@ export default async function HomePage() {
       <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 md:grid-cols-2 md:px-6">
         <div className="relative aspect-[4/5] overflow-hidden">
           <Image
-            src={ASSETS.midLifestyle}
+            src={originStill()}
             alt="Trail days in the Outeniquas"
             fill
             sizes="50vw"
@@ -170,7 +171,7 @@ export default async function HomePage() {
         <p className="stamp text-forest">05 · On the ground</p>
         <h2 className="mt-3 font-display text-5xl md:text-6xl">Gallery</h2>
         <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {LIFESTYLE.slice(0, 8).map((src) => (
+          {homepageStrip().map((src) => (
             <div key={src} className="relative aspect-square overflow-hidden">
               <Image
                 src={src}

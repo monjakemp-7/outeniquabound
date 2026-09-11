@@ -6,6 +6,7 @@ import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGrid } from "@/components/ProductCard";
 import { productName, stripHtml } from "@/lib/html";
 import { formatWooPrice } from "@/lib/money";
+import { galleryImages } from "@/lib/product-imagery";
 import { getFeaturedProducts, getProductBySlug } from "@/lib/woo";
 
 export async function generateMetadata({
@@ -46,7 +47,7 @@ export default async function ProductPage({
         {product.categories[0] ? productName(product.categories[0].name) : "Kit"}
       </p>
       <div className="mt-6 grid items-start gap-10 md:grid-cols-2">
-        <ProductGallery images={product.images} name={name} />
+        <ProductGallery images={galleryImages(product)} name={name} />
         <div>
           <h1 className="font-display text-5xl leading-none md:text-6xl">
             {name}

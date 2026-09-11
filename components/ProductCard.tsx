@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { productName } from "@/lib/html";
 import { formatWooPrice } from "@/lib/money";
+import { cardPrimary } from "@/lib/product-imagery";
 import type { WooProduct } from "@/lib/types";
 
 export function ProductCard({ product }: { product: WooProduct }) {
-  const image = product.images[0];
+  const image = cardPrimary(product);
   const name = productName(product.name);
 
   return (
@@ -25,7 +26,7 @@ export function ProductCard({ product }: { product: WooProduct }) {
           </div>
         )}
         <span className="absolute left-3 top-3 stamp bg-sand/90 text-mountain">
-          Field kit
+          {image?.kind === "lifestyle" ? "On the trail" : "Field kit"}
         </span>
       </div>
       <div className="mt-3 flex items-baseline justify-between gap-3">

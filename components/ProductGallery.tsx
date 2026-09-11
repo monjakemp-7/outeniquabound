@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import type { WooImage } from "@/lib/types";
+import type { ProductImage } from "@/lib/product-imagery";
 
 export function ProductGallery({
   images,
   name,
 }: {
-  images: WooImage[];
+  images: ProductImage[];
   name: string;
 }) {
   const [active, setActive] = useState(0);
@@ -24,7 +24,7 @@ export function ProductGallery({
 
   return (
     <div>
-      <div className="relative aspect-square overflow-hidden bg-sand">
+      <div className="relative aspect-[4/5] overflow-hidden bg-sand sm:aspect-square">
         <Image
           src={current.src}
           alt={current.alt || name}
@@ -33,12 +33,17 @@ export function ProductGallery({
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover"
         />
+        {current.kind === "lifestyle" ? (
+          <span className="absolute left-3 top-3 stamp bg-sand/90 text-mountain">
+            On the trail
+          </span>
+        ) : null}
       </div>
       {images.length > 1 ? (
         <div className="mt-3 grid grid-cols-5 gap-2">
-          {images.slice(0, 5).map((image, index) => (
+          {images.slice(0, 6).map((image, index) => (
             <button
-              key={image.id || image.src}
+              key={image.src}
               type="button"
               onClick={() => setActive(index)}
               className={`relative aspect-square overflow-hidden border ${
