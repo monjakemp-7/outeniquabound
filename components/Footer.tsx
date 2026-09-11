@@ -20,8 +20,8 @@ export function Footer() {
             </p>
           </div>
           <p className="mt-4 max-w-md font-serif text-lg leading-relaxed text-sand/80">
-            Start where you are. Gear for ridgelines, forest trails, and the
-            long way around the Outeniquas.
+            Start where you are. Trail kit packed in George — bound to the
+            Outeniquas, not to polish.
           </p>
           <p className="mt-4 stamp text-sun">Free shipping over R999</p>
         </div>
@@ -43,6 +43,11 @@ export function Footer() {
             <li>
               <Link href="/second-summit" className="hover:text-sun">
                 Second Summit
+              </Link>
+            </li>
+            <li>
+              <Link href="/size-guide" className="hover:text-sun">
+                Size guide
               </Link>
             </li>
             <li>

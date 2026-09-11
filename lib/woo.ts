@@ -53,9 +53,11 @@ export async function getCategories() {
 
 export async function getFeaturedProducts() {
   const all = await getProducts({ per_page: 100 });
-  const branded = all.filter((p) =>
-    (p.sku || "").toUpperCase().startsWith("OB"),
-  );
+  const branded = all.filter((p) => {
+    const sku = (p.sku || "").toUpperCase();
+    if (!sku.startsWith("OB")) return false;
+    return !p.categories.some((c) => c.slug.includes("gift"));
+  });
   const picks = branded.slice(0, 8);
   return picks.length ? picks : all.slice(0, 8);
 }

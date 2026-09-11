@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s · Outeniqua Bound",
   },
   description:
-    "Start where you are. Outdoor clothing and circular gear from the Outeniqua Mountains.",
+    "Start where you are. Trail kit packed in George — bound to the Outeniquas.",
   metadataBase: new URL("https://outeniquabound.com"),
 };
 

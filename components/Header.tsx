@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { CartLink } from "./CartProvider";
 
 const NAV = [
@@ -13,9 +14,31 @@ const NAV = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const overHero = pathname === "/";
+
+  useEffect(() => {
+    if (!overHero) {
+      setScrolled(false);
+      return;
+    }
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [overHero]);
+
+  const headerClass = overHero
+    ? `fixed inset-x-0 top-0 z-50 border-b text-sand ${
+        scrolled
+          ? "border-sand/15 bg-mountain"
+          : "border-sand/10 bg-mountain/45 backdrop-blur-sm"
+      }`
+    : "sticky top-0 z-50 border-b border-sand/15 bg-mountain text-sand";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sand/15 bg-mountain text-sand">
+    <header className={headerClass}>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <Link href="/" className="flex items-center gap-3">
           <Image
@@ -53,7 +76,7 @@ export function Header() {
         </button>
       </div>
       {open ? (
-        <div className="border-t border-sand/15 px-4 py-4 md:hidden">
+        <div className="border-t border-sand/15 bg-mountain px-4 py-4 md:hidden">
           <nav className="flex flex-col gap-3">
             {NAV.map((item) => (
               <Link

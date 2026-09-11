@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useCart } from "./CartProvider";
 import { variationIdForSize } from "@/lib/woo";
@@ -52,8 +53,14 @@ export function AddToCart({ product }: { product: WooProduct }) {
     <div className="space-y-4">
       {sizes.length > 0 ? (
         <fieldset>
-          <legend className="font-display text-sm tracking-[0.2em] text-forest">
-            Size
+          <legend className="flex w-full items-center justify-between gap-4 font-display text-sm tracking-[0.2em] text-forest">
+            <span>Size</span>
+            <Link
+              href="/size-guide"
+              className="tracking-[0.16em] text-earth hover:underline"
+            >
+              Size guide
+            </Link>
           </legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {sizes.map((term) => {

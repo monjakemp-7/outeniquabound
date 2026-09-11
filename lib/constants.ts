@@ -34,94 +34,138 @@ export const ASSETS = {
   swya: "https://outeniquabound.com/wp-content/uploads/2026/07/SWYA.png",
   hydration:
     "https://outeniquabound.com/wp-content/uploads/2026/05/OB-HYDRATION-CAT-NEW.webp",
+  mensHoodies:
+    "https://outeniquabound.com/wp-content/uploads/2026/05/Mens-hoodies-may.webp",
+  mensTees:
+    "https://outeniquabound.com/wp-content/uploads/2026/05/mens-shirts-may.webp",
+  womensHoodies:
+    "https://outeniquabound.com/wp-content/uploads/2026/05/womens-hoodies-may.webp",
+  womensTees:
+    "https://outeniquabound.com/wp-content/uploads/2026/05/OB-CAT-Womens-Shirts.webp",
+  mensBuffs:
+    "https://outeniquabound.com/wp-content/uploads/2026/05/OB-Cat-Mens-Buffs.webp",
+  mensSocks:
+    "https://outeniquabound.com/wp-content/uploads/2026/05/mens-socks.webp",
 };
 
-export const LIFESTYLE = [
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL1-Feature.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL2.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL3.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL4.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL5.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL6.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL7.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL8.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL9.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL10.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL11.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL12.webp",
-  "https://outeniquabound.com/wp-content/uploads/2026/07/OB-BL13.webp",
-];
+/** Field Guide voice. Observation, then invite. No hype, no “adventure awaits.” */
+export const COPY = {
+  heroKicker: "Field guide · George, Western Cape",
+  heroLine1: "Start where",
+  heroLine2: "you are",
+  heroSupport:
+    "Trail kit for Outeniqua days — from the first hill behind your house to the long ridge.",
+  ctaShop: "Shop the field kit",
+  ctaSecond: "Second Summit",
+  trustBar:
+    "Free SA shipping over R999 · Easy returns · Second Summit · George",
+  homeBrandBeat:
+    "Packed on Saagmeul Street in George. Named for the ground — Summit, Coastline, Fynbos, Keurberg. Dirtbag kit, meant to get dirty. Used, fixed, shared, used again. Second Summit keeps the good stuff on the trail.",
+};
 
-export const HOME_CATEGORIES: {
+export const HOME_PATHS: {
   label: string;
   href: string;
   image: string;
   fallback?: string;
 }[] = [
   {
-    label: "Men’s Hoodies",
-    href: "/shop?category=hoodies",
+    label: "Men",
+    href: "/shop?category=men",
     image: "/images/lifestyle/mens-hoodie-summit.jpg",
-    fallback:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/Mens-hoodies-may.webp",
+    fallback: ASSETS.mensHoodies,
   },
   {
-    label: "Men’s T-Shirts",
-    href: "/shop?category=t-shirts-clothing",
-    image: "/images/lifestyle/mens-tee-dark.jpg",
-    fallback:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/mens-shirts-may.webp",
-  },
-  {
-    label: "Men’s Buffs",
-    href: "/shop?category=buffs",
-    image:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/OB-Cat-Mens-Buffs.webp",
-  },
-  {
-    label: "Men’s Socks",
-    href: "/shop?category=socks",
-    image:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/mens-socks.webp",
-  },
-  {
-    label: "Women’s Hoodies",
-    href: "/shop?category=hoodies-clothing-womens",
+    label: "Women",
+    href: "/shop?category=womens",
     image: "/images/lifestyle/womens-hoodie-coastline.jpg",
-    fallback:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/womens-hoodies-may.webp",
+    fallback: ASSETS.womensHoodies,
   },
   {
-    label: "Women’s T-Shirts",
-    href: "/shop?category=t-shirts",
-    image: "/images/lifestyle/womens-hoodie-graphic-socks.jpg",
-    fallback:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/OB-CAT-Womens-Shirts.webp",
+    label: "Buffs & socks",
+    href: "/shop?group=buffs-socks",
+    image: ASSETS.mensBuffs,
   },
   {
-    label: "Women’s Buffs",
-    href: "/shop?category=buffs-accessories-womens",
-    image:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/womens-buffs.webp",
-  },
-  {
-    label: "Women’s Socks",
-    href: "/shop?category=socks-accessories-womens",
-    image: "/images/lifestyle/womens-hoodie-graphic-socks.jpg",
-    fallback:
-      "https://outeniquabound.com/wp-content/uploads/2026/05/womens-socks.webp",
+    label: "Hydration",
+    href: "/shop?category=hydration",
+    image: ASSETS.hydration,
   },
 ];
 
-export const SHOP_FILTERS = [
+export const LOOKBOOK_FRAMES: {
+  label: string;
+  href: string;
+  image: string;
+  fallback: string;
+}[] = [
+  {
+    label: "Summit hoodie",
+    href: "/product/ob00003-blac",
+    image: "/images/lifestyle/mens-hoodie-summit.jpg",
+    fallback: ASSETS.mensHoodies,
+  },
+  {
+    label: "Coastline hoodie",
+    href: "/product/ob00005-sand",
+    image: "/images/lifestyle/womens-hoodie-coastline.jpg",
+    fallback: ASSETS.womensHoodies,
+  },
+  {
+    label: "Men’s tees",
+    href: "/shop?category=t-shirts-clothing",
+    image: "/images/lifestyle/mens-tee-dark.jpg",
+    fallback: ASSETS.mensTees,
+  },
+  {
+    label: "Women’s kit",
+    href: "/shop?category=womens",
+    image: "/images/lifestyle/womens-hoodie-ridge.jpg",
+    fallback: ASSETS.midLifestyle,
+  },
+  {
+    label: "Hydration",
+    href: "/shop?category=hydration",
+    image: ASSETS.hydration,
+    fallback: ASSETS.hydration,
+  },
+  {
+    label: "Buffs",
+    href: "/shop?category=buffs",
+    image: ASSETS.mensBuffs,
+    fallback: ASSETS.mensBuffs,
+  },
+];
+
+export const SHOP_GROUPS: Record<string, string[]> = {
+  "buffs-socks": [
+    "buffs",
+    "socks",
+    "buffs-accessories-womens",
+    "socks-accessories-womens",
+    "accessories",
+    "accessories-womens",
+  ],
+};
+
+export const SHOP_FILTERS: {
+  label: string;
+  slug?: string;
+  group?: string;
+}[] = [
   { label: "All", slug: "" },
   { label: "Men’s", slug: "men" },
   { label: "Women’s", slug: "womens" },
   { label: "Hoodies", slug: "hoodies" },
   { label: "T-Shirts", slug: "t-shirts-clothing" },
-  { label: "Buffs", slug: "buffs" },
-  { label: "Socks", slug: "socks" },
+  { label: "Buffs & socks", group: "buffs-socks" },
   { label: "Hydration", slug: "hydration" },
 ];
 
-export const BRAND_STORY = `Outeniqua Bound was born in the Outeniqua Mountains, forged through long days of running ridgelines, riding forest trails, and pushing deeper into ancient fynbos. Beneath towering yellowwood trees, past tea-coloured rivers and king proteas, this landscape shaped who we are. Proudly South African and dirtbag at heart, we believe gear should be used, fixed, shared, and used again. By keeping equipment out of landfills and in the mountains, we help more people earn their time outside — because wild places aren’t for show, they’re for living in.`;
+export const BRAND_STORY = `Outeniqua Bound started in the Outeniquas above George — yellowwood shade, tea-coloured rivers, king proteas in the ditch. Proudly South African and dirtbag at heart: gear should be used, fixed, shared, and used again. Wild places aren’t for show. They’re for living in.`;
+
+export const ABOUT_STORY = [
+  "The Outeniquas sit above George and they don’t perform for anyone. You just start walking. Fynbos underfoot. A long ridge when you’re ready for it. The first hill behind the house counts.",
+  "We pack from 1 Saagmeul Street: hoodies, tees, buffs, socks, bottles. Names from the ground — Summit, Traverse, Heritage, Coastline, Moonrise, Contour, Geelhout, Keurberg, Fynbos.",
+  "Dirtbag kit is meant to get dirty. Second Summit at Trail Kiosk takes gear back, grades it honestly, and sends it out again. Circular on purpose. Bound to movement, not to polish.",
+];

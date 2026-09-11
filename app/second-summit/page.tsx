@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ASSETS } from "@/lib/constants";
+import {
+  STICKERS,
+  StickerStamp,
+  stickerIfPresent,
+} from "@/components/StickerStamp";
 
 export const metadata: Metadata = {
   title: "Second Summit",
   description:
-    "Give gear a second life. Outeniqua Bound’s circular system for selling and buying adventure-ready kit.",
+    "Give gear a second life. Outeniqua Bound’s circular system for selling and buying trail kit in George.",
 };
 
 const GRADES = [
@@ -53,7 +58,7 @@ export default function SecondSummitPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-mountain via-mountain/50 to-mountain/20" />
         <div className="relative mx-auto flex min-h-[70vh] max-w-6xl flex-col justify-end px-4 pb-16 md:px-6">
           <Image
-            src={ASSETS.secondSummitLogo}
+            src={stickerIfPresent(STICKERS.secondSummit) ?? ASSETS.secondSummitLogo}
             alt="Second Summit"
             width={220}
             height={80}
@@ -70,7 +75,19 @@ export default function SecondSummitPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+        <StickerStamp
+          src={STICKERS.secondSummit}
+          className="absolute right-4 -top-4 hidden md:block"
+          rotate={-8}
+          size={96}
+        />
+        <StickerStamp
+          src={STICKERS.outeniquaBound}
+          className="absolute -left-2 bottom-4 hidden lg:block"
+          rotate={7}
+          size={80}
+        />
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <p className="stamp text-earth">Second your gear</p>
@@ -79,16 +96,17 @@ export default function SecondSummitPage() {
               Outdoor gear is built to go far — not to end up in a bin. We
               assess every item, grade it clearly, and rehome it with someone
               who’ll put it to work again. Drop-offs currently in person only —
-              Trail Kiosk pod (George) or selected expo booths.
+              Trail Kiosk pod (George) or selected expo booths. The mountain
+              belongs to more people when good kit stays in circulation.
             </p>
           </div>
           <div>
             <p className="stamp text-sky">Buy for your Second Summit</p>
-            <h2 className="mt-3 font-display text-4xl">Adventure-ready kit</h2>
+            <h2 className="mt-3 font-display text-4xl">Kit with life left</h2>
             <p className="mt-4 font-serif text-lg leading-relaxed text-mountain/80">
               Choose graded gear with plenty of life left. A smarter buy for
-              you, a lighter footprint for the planet. Less new production.
-              Less waste. More adventure. We’ll roll out an online Second
+              you, a lighter footprint for the hills. Less new production.
+              Less waste. More days out. We’ll roll out an online Second
               Summit system in due course.
             </p>
           </div>

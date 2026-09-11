@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { ASSETS } from "./constants";
+import { ASSETS, LOOKBOOK_FRAMES } from "./constants";
 import type { WooImage, WooProduct } from "./types";
 
 /**
@@ -75,6 +75,7 @@ const CATEGORY_CARD_LIFESTYLE: Record<CategoryKey, string[]> = {
 
 /** Shop / homepage category tiles — merchandising only, not SKUs. */
 export const CATEGORY_TILE: Record<string, string> = {
+  men: LIFESTYLE.mensHoodieSummit,
   hoodies: LIFESTYLE.mensHoodieSummit,
   "t-shirts-clothing": LIFESTYLE.mensTeeDark,
   "hoodies-clothing-womens": LIFESTYLE.womensHoodieCoastline,
@@ -83,7 +84,7 @@ export const CATEGORY_TILE: Record<string, string> = {
   womens: LIFESTYLE.womensHoodieRidge,
 };
 
-/** Homepage gallery / campaign strip. Duffel is not a live SKU. */
+/** About / brand-story stills. Duffel is campaign only — not a live SKU. */
 export const HOMEPAGE_STRIP = [
   LIFESTYLE.womensHoodieCoastline,
   LIFESTYLE.womensHoodieRidge,
@@ -204,6 +205,18 @@ export function homepageStrip(): string[] {
     if (out.length >= 8) break;
   }
   return out;
+}
+
+export function storyImages() {
+  return homepageStrip().slice(0, 4);
+}
+
+export function lookbookFrames() {
+  return LOOKBOOK_FRAMES.map((frame) => ({
+    label: frame.label,
+    href: frame.href,
+    src: present(frame.image) ?? frame.fallback,
+  })).slice(0, 6);
 }
 
 export function originStill() {

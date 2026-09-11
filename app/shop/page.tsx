@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProductGrid } from "@/components/ProductCard";
-import { SHOP_FILTERS } from "@/lib/constants";
+import { SHOP_FILTERS, SHOP_GROUPS } from "@/lib/constants";
 import { getCategories, getProducts } from "@/lib/woo";
 
 export const metadata: Metadata = {
@@ -12,19 +12,30 @@ export const metadata: Metadata = {
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; group?: string }>;
 }) {
-  const { category } = await searchParams;
+  const { category, group } = await searchParams;
   const categories = await getCategories();
-  const categoryId = category
-    ? categories.find((c) => c.slug === category)?.id
-    : undefined;
-  const products = await getProducts({
-    per_page: 100,
-    ...(categoryId ? { category: categoryId } : category ? { category } : {}),
-  });
+  const groupSlugs = group ? SHOP_GROUPS[group] : undefined;
 
-  const active = category ?? "";
+  let products;
+  if (groupSlugs) {
+    const allowed = new Set(groupSlugs);
+    products = (await getProducts({ per_page: 100 })).filter((p) =>
+      p.categories.some((c) => allowed.has(c.slug)),
+    );
+  } else if (category) {
+    const categoryId = categories.find((c) => c.slug === category)?.id;
+    products = await getProducts({
+      per_page: 100,
+      ...(categoryId ? { category: categoryId } : { category }),
+    });
+  } else {
+    products = await getProducts({ per_page: 100 });
+  }
+
+  const activeSlug = category ?? "";
+  const activeGroup = group ?? "";
   const match = categories.find((c) => c.slug === category);
 
   return (
@@ -37,8 +48,14 @@ export default async function ShopPage({
       </p>
       <div className="mt-8 flex flex-wrap gap-2">
         {SHOP_FILTERS.map((filter) => {
-          const href = filter.slug ? `/shop?category=${filter.slug}` : "/shop";
-          const selected = active === filter.slug;
+          const href = filter.group
+            ? `/shop?group=${filter.group}`
+            : filter.slug
+              ? `/shop?category=${filter.slug}`
+              : "/shop";
+          const selected = filter.group
+            ? activeGroup === filter.group
+            : !activeGroup && activeSlug === (filter.slug ?? "");
           return (
             <Link
               key={filter.label}

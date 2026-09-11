@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { AddToCart } from "@/components/AddToCart";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGrid } from "@/components/ProductCard";
+import { StickerStamp, placeStampForProduct } from "@/components/StickerStamp";
 import { productName, stripHtml } from "@/lib/html";
 import { formatWooPrice } from "@/lib/money";
+import { productCopy } from "@/lib/product-descriptions";
 import { galleryImages } from "@/lib/product-imagery";
 import { getFeaturedProducts, getProductBySlug } from "@/lib/woo";
 
@@ -17,9 +19,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) return { title: "Product" };
+  const overlay = productCopy(product);
   return {
     title: productName(product.name),
-    description: stripHtml(product.short_description || product.description),
+    description:
+      overlay?.short ||
+      stripHtml(product.short_description || product.description),
   };
 }
 
@@ -36,6 +41,8 @@ export default async function ProductPage({
     .filter((p) => p.id !== product.id)
     .slice(0, 4);
   const name = productName(product.name);
+  const overlay = productCopy(product);
+  const stamp = placeStampForProduct(name, product.slug);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
@@ -48,14 +55,33 @@ export default async function ProductPage({
       </p>
       <div className="mt-6 grid items-start gap-10 md:grid-cols-2">
         <ProductGallery images={galleryImages(product)} name={name} />
-        <div>
+        <div className="relative">
+          {stamp ? (
+            <StickerStamp
+              src={stamp}
+              className="absolute -right-2 -top-8 hidden md:block"
+              rotate={11}
+              size={84}
+            />
+          ) : null}
           <h1 className="font-display text-5xl leading-none md:text-6xl">
             {name}
           </h1>
           <p className="mt-4 font-serif text-2xl text-earth">
             {formatWooPrice(product.prices)}
           </p>
-          {product.short_description ? (
+          {overlay ? (
+            <div className="prose-field mt-6 font-serif text-lg leading-relaxed text-mountain/85">
+              <p>{overlay.short}</p>
+              {overlay.facts.length ? (
+                <ul className="mt-4 list-disc space-y-1 pl-5 font-serif text-base text-mountain/75">
+                  {overlay.facts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ) : product.short_description ? (
             <div
               className="prose-field mt-6 font-serif text-lg leading-relaxed text-mountain/85"
               dangerouslySetInnerHTML={{ __html: product.short_description }}
