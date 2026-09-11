@@ -97,7 +97,7 @@ export const HOMEPAGE_STRIP = [
 ];
 
 const BRAND_GALLERY_FALLBACK = [
-  ASSETS.midLifestyle,
+  ASSETS.womensHoodies,
   ASSETS.heroStill,
   ASSETS.secondSummitHeader,
 ];
@@ -212,18 +212,21 @@ export function storyImages() {
 }
 
 export function lookbookFrames() {
-  return LOOKBOOK_FRAMES.map((frame) => ({
-    label: frame.label,
-    href: frame.href,
-    src: present(frame.image) ?? frame.fallback,
-  })).slice(0, 6);
+  return LOOKBOOK_FRAMES.map((frame) => {
+    const src = present(frame.image) ?? frame.fallback;
+    return {
+      label: frame.label,
+      href: frame.href,
+      src: src === ASSETS.midLifestyle ? ASSETS.womensHoodies : src,
+    };
+  }).slice(0, 6);
 }
 
 export function originStill() {
   return (
     present(LIFESTYLE.womensHoodieRidge) ??
     present(LIFESTYLE.womensHoodieCoastline) ??
-    ASSETS.midLifestyle
+    ASSETS.womensHoodies
   );
 }
 

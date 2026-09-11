@@ -23,6 +23,7 @@ export const ASSETS = {
     "https://outeniquabound.com/wp-content/uploads/2026/05/ob-video-cover.webp",
   heroStill:
     "https://outeniquabound.com/wp-content/uploads/2026/03/OB-main-image-2.webp",
+  /** WordPress mid-page still of a man in a tent. Never use for women’s tiles. */
   midLifestyle:
     "https://outeniquabound.com/wp-content/uploads/2026/03/OB-HP-Mid.webp",
   secondSummitHeader:
@@ -78,7 +79,7 @@ export const HOME_PATHS: {
   {
     label: "Women",
     href: "/shop?category=womens",
-    image: "/images/lifestyle/womens-hoodie-coastline.jpg",
+    image: "/images/lifestyle/womens-hoodie-ridge.jpg",
     fallback: ASSETS.womensHoodies,
   },
   {
@@ -121,7 +122,7 @@ export const LOOKBOOK_FRAMES: {
     label: "Women’s kit",
     href: "/shop?category=womens",
     image: "/images/lifestyle/womens-hoodie-ridge.jpg",
-    fallback: ASSETS.midLifestyle,
+    fallback: ASSETS.womensHoodies,
   },
   {
     label: "Hydration",
