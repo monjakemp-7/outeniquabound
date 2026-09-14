@@ -137,6 +137,8 @@ const FALLBACK: PlaceholderReview[] = [
   },
 ];
 
+export const SAMPLE_QUOTES = FALLBACK;
+
 function kindFor(product: WooProduct) {
   const cats = product.categories.map((c) => c.slug.toLowerCase()).join(" ");
   const hay = `${product.name} ${product.slug} ${cats}`.toLowerCase();

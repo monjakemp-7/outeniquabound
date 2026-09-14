@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { displayPrice, isGiftCard } from "@/lib/catalog";
 import { productName } from "@/lib/html";
-import { formatWooPrice } from "@/lib/money";
 import { cardPrimary } from "@/lib/product-imagery";
 import type { WooProduct } from "@/lib/types";
 
 export function ProductCard({ product }: { product: WooProduct }) {
   const image = cardPrimary(product);
   const name = productName(product.name);
+  const gift = isGiftCard(product);
+  const price = displayPrice(product);
 
   return (
     <Link href={`/product/${product.slug}`} className="group block">
@@ -26,16 +28,16 @@ export function ProductCard({ product }: { product: WooProduct }) {
           </div>
         )}
         <span className="absolute left-3 top-3 stamp bg-sand/90 text-mountain">
-          Baseline
+          {gift ? "Gift card" : "Baseline"}
         </span>
       </div>
       <div className="mt-3 flex items-baseline justify-between gap-3">
         <h3 className="font-display text-xl leading-none tracking-[0.06em]">
           {name}
         </h3>
-        <p className="shrink-0 font-serif text-sm text-earth">
-          {formatWooPrice(product.prices)}
-        </p>
+        {price ? (
+          <p className="shrink-0 font-serif text-sm text-earth">{price}</p>
+        ) : null}
       </div>
     </Link>
   );

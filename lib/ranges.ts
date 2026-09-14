@@ -49,7 +49,7 @@ export const RANGES: Range[] = [
     ],
     live: true,
     href: "/ranges/baseline",
-    shopHref: "/shop?range=baseline",
+    shopHref: "/shop",
     image: LIFESTYLE.mensHoodieSummit,
     imageAlt: "Summit hoodie",
     traits: ["Consistent", "Recognisable", "Repeatable", "Premium", "Core"],

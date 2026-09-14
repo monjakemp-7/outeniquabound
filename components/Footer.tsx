@@ -70,6 +70,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/product/gift-card" className="hover:text-sun">
+                Gift card
+              </Link>
+            </li>
+            <li>
               <Link href="/cart" className="hover:text-sun">
                 Cart
               </Link>

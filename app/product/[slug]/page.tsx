@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { AddToCart } from "@/components/AddToCart";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGrid } from "@/components/ProductCard";
 import { ProductReviews } from "@/components/ProductReviews";
 import { StickerStamp, placeStampForProduct } from "@/components/StickerStamp";
+import { colourLabel, displayPrice, familySiblings, isGiftCard } from "@/lib/catalog";
 import { productName, stripHtml } from "@/lib/html";
-import { formatWooPrice } from "@/lib/money";
 import { productCopy } from "@/lib/product-descriptions";
 import { galleryImages } from "@/lib/product-imagery";
 import { placeholderReviews } from "@/lib/reviews";
-import { getFeaturedProducts, getProductBySlug } from "@/lib/woo";
+import {
+  getFeaturedProducts,
+  getProductBySlug,
+  getProducts,
+} from "@/lib/woo";
 
 export async function generateMetadata({
   params,
@@ -27,6 +31,7 @@ export async function generateMetadata({
     description:
       overlay?.short ||
       stripHtml(product.short_description || product.description),
+    alternates: { canonical: `/product/${product.slug}` },
   };
 }
 
@@ -38,13 +43,20 @@ export default async function ProductPage({
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
+  if (product.slug !== slug) {
+    permanentRedirect(`/product/${product.slug}`);
+  }
 
+  const catalog = await getProducts({ per_page: 100 });
+  const colours = familySiblings(catalog, product);
   const related = (await getFeaturedProducts())
     .filter((p) => p.id !== product.id)
     .slice(0, 4);
   const name = productName(product.name);
   const overlay = productCopy(product);
   const stamp = placeStampForProduct(name, product.slug);
+  const gift = isGiftCard(product);
+  const price = displayPrice(product);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
@@ -53,9 +65,13 @@ export default async function ProductPage({
           Shop
         </Link>
         <span className="mx-2">/</span>
-        <Link href="/ranges/baseline" className="hover:text-earth">
-          Baseline
-        </Link>
+        {gift ? (
+          <span>Gift card</span>
+        ) : (
+          <Link href="/ranges/baseline" className="hover:text-earth">
+            Baseline
+          </Link>
+        )}
         <span className="mx-2">/</span>
         {product.categories[0] ? productName(product.categories[0].name) : "Gear"}
       </p>
@@ -73,9 +89,35 @@ export default async function ProductPage({
           <h1 className={`font-display text-5xl leading-none md:text-6xl ${stamp ? "md:pr-20" : ""}`}>
             {name}
           </h1>
-          <p className="mt-4 font-serif text-2xl text-earth">
-            {formatWooPrice(product.prices)}
-          </p>
+          {price ? (
+            <p className="mt-4 font-serif text-2xl text-earth">{price}</p>
+          ) : null}
+          {colours.length > 1 ? (
+            <div className="mt-6">
+              <p className="font-display text-sm tracking-[0.2em] text-forest">
+                Colour
+              </p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {colours.map((item) => {
+                  const label = colourLabel(item) || productName(item.name);
+                  const selected = item.id === product.id;
+                  return (
+                    <Link
+                      key={item.id}
+                      href={`/product/${item.slug}`}
+                      className={`border px-3 py-2 font-display text-sm tracking-[0.14em] ${
+                        selected
+                          ? "border-earth bg-earth text-sand"
+                          : "border-mountain/25 hover:border-mountain"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
           {overlay ? (
             <div className="prose-field mt-6 font-serif text-lg leading-relaxed text-mountain/85">
               <p>{overlay.short}</p>
@@ -92,6 +134,11 @@ export default async function ProductPage({
               className="prose-field mt-6 font-serif text-lg leading-relaxed text-mountain/85"
               dangerouslySetInnerHTML={{ __html: product.short_description }}
             />
+          ) : gift ? (
+            <p className="mt-6 font-serif text-lg leading-relaxed text-mountain/85">
+              A card for someone who starts where they are. Choose R250, R500,
+              R1000, or your own amount. Not a size. A till amount.
+            </p>
           ) : null}
           <div className="mt-8">
             <AddToCart product={product} />
@@ -104,7 +151,9 @@ export default async function ProductPage({
           ) : null}
         </div>
       </div>
-      <ProductReviews reviews={placeholderReviews(product)} />
+      {gift ? null : (
+        <ProductReviews reviews={placeholderReviews(product)} />
+      )}
       {related.length ? (
         <div className="mt-20">
           <h2 className="font-display text-4xl">Along the same trail</h2>

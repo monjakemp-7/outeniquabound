@@ -4,18 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Shipping",
   description:
-    "Free SA shipping over R999. Packed in George. Placeholder times while we confirm the final policy.",
+    "Free SA shipping over R999. Packed in George. Metro runs typically 2–5 business days.",
 };
 
 export default function ShippingPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 pb-14 pt-20 md:px-6">
-      <p className="stamp text-forest">Policy details to be confirmed</p>
+      <p className="stamp text-forest">From George</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">Shipping</h1>
       <p className="mt-5 font-serif text-lg leading-relaxed text-mountain/80">
         Packed in George. Sent on from here — Garden Route, Cape Town, and
-        the rest of South Africa. This page is a working note, not a locked
-        legal wall. We’ll tighten the times as the bench confirms them.
+        the rest of South Africa.
       </p>
 
       <section className="mt-12">

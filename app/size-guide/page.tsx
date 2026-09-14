@@ -14,11 +14,12 @@ const TOPS = [
   { size: "L", chest: "101–106", length: "74" },
   { size: "XL", chest: "106–111", length: "76" },
   { size: "XXL", chest: "111–117", length: "78" },
+  { size: "XXXL", chest: "117–124", length: "80" },
 ];
 
 export default function SizeGuidePage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 md:px-6">
+    <div className="mx-auto max-w-3xl px-4 pb-14 pt-20 md:px-6">
       <p className="stamp text-forest">Fit notes</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">Size guide</h1>
       <p className="mt-5 font-serif text-lg leading-relaxed text-mountain/80">
@@ -61,8 +62,7 @@ export default function SizeGuidePage() {
           </table>
         </div>
         <p className="mt-3 font-serif text-sm text-mountain/60">
-          Placeholder chart while we lock factory measurements. Use it as a
-          steer, then check the garment notes on each product.
+          XXXL on selected men’s pieces. Between sizes, take the larger one.
         </p>
       </section>
 

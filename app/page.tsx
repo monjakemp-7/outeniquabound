@@ -11,6 +11,7 @@ import {
   originStill,
 } from "@/lib/product-imagery";
 import { RANGES } from "@/lib/ranges";
+import { SAMPLE_QUOTES } from "@/lib/reviews";
 import { getFeaturedProducts } from "@/lib/woo";
 
 export default async function HomePage() {
@@ -195,6 +196,28 @@ export default async function HomePage() {
         >
           Read the architecture →
         </Link>
+      </section>
+
+      <section className="border-y border-mountain/10 bg-sand">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6">
+          <p className="stamp text-forest">Sample notes</p>
+          <h2 className="mt-3 font-display text-5xl">From the hill</h2>
+          <p className="mt-3 max-w-xl font-serif text-mountain/70">
+            Short lines to show the pattern. Not verified purchases.
+          </p>
+          <ul className="mt-8 grid gap-6 md:grid-cols-3">
+            {SAMPLE_QUOTES.map((quote) => (
+              <li key={quote.name} className="border border-mountain/15 p-5">
+                <p className="font-serif leading-relaxed text-mountain/85">
+                  “{quote.body}”
+                </p>
+                <p className="mt-4 font-display text-sm tracking-[0.16em] text-mountain/55">
+                  {quote.name} · {quote.place}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="relative overflow-hidden">

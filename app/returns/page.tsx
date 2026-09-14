@@ -4,18 +4,17 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Returns",
   description:
-    "Placeholder returns window: 30 days, unused, tags on. Policy details to be confirmed.",
+    "30 days from delivery. Unworn, unwashed, tags on. Trail-worn buffs and socks stay with you.",
 };
 
 export default function ReturnsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 pb-14 pt-20 md:px-6">
-      <p className="stamp text-forest">Policy details to be confirmed</p>
+      <p className="stamp text-forest">Send it back unused</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">Returns</h1>
       <p className="mt-5 font-serif text-lg leading-relaxed text-mountain/80">
         Gear should be used. If it isn’t the right piece, send it back unused
-        and we’ll sort it. This is a working note — the window and the
-        paperwork may tighten.
+        and we’ll sort it.
       </p>
 
       <section className="mt-12">

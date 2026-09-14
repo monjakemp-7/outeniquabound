@@ -160,26 +160,35 @@ function existingLifestyle(srcs: string[], alt: string): ProductImage[] {
   return srcs.filter(assetOnDisk).map((src) => asLifestyle(src, alt));
 }
 
-/** Shop cards + featured: slug match, else category merchandising, then Woo studio. */
-export function cardImages(product: WooProduct): ProductImage[] {
+function lifestyleFor(product: WooProduct) {
   const alt = product.name;
   const fromSlug = existingLifestyle(SLUG_LIFESTYLE[product.slug] ?? [], alt);
+  if (fromSlug.length) return fromSlug;
+  const stem = (product.sku || "").toUpperCase().match(/^(OB\d{5})/)?.[1];
+  if (!stem) return [];
+  const match = Object.entries(SLUG_LIFESTYLE).find(([slug]) =>
+    slug.toUpperCase().startsWith(stem),
+  );
+  return existingLifestyle(match?.[1] ?? [], alt);
+}
+
+/** Shop cards + featured: slug match, else category merchandising, then Woo studio. */
+export function cardImages(product: WooProduct): ProductImage[] {
+  const fromSlug = lifestyleFor(product);
   const cat = merchandisingCategory(product);
   const fromCat =
     fromSlug.length === 0 && cat
-      ? existingLifestyle(CATEGORY_CARD_LIFESTYLE[cat] ?? [], alt)
+      ? existingLifestyle(CATEGORY_CARD_LIFESTYLE[cat] ?? [], product.name)
       : [];
   return unique([...fromSlug, ...fromCat, ...studioImages(product)]);
 }
 
 /**
- * PDP gallery: confirmed slug lifestyle first, then Woo studio.
+ * PDP gallery: confirmed slug/SKU lifestyle first, then Woo studio.
  * Category-level photos stay off the PDP so we do not imply the wrong SKU.
  */
 export function galleryImages(product: WooProduct): ProductImage[] {
-  const alt = product.name;
-  const fromSlug = existingLifestyle(SLUG_LIFESTYLE[product.slug] ?? [], alt);
-  return unique([...fromSlug, ...studioImages(product)]);
+  return unique([...lifestyleFor(product), ...studioImages(product)]);
 }
 
 export function cardPrimary(product: WooProduct): ProductImage | undefined {

@@ -9,12 +9,7 @@ import { productName } from "@/lib/html";
 import { formatMinor } from "@/lib/money";
 
 export function CartView() {
-  const { cart, loading, updateItem, removeItem } = useCart();
-
-  if (loading && !cart) {
-    return <p className="font-serif text-lg">Checking the pack…</p>;
-  }
-
+  const { cart, updateItem, removeItem } = useCart();
   const items = cart?.items ?? [];
   const totals = cart?.totals;
   const minor = totals?.currency_minor_unit ?? 2;
@@ -135,9 +130,12 @@ export function CartView() {
             <dd>{formatMinor(totals?.total_price ?? "0", minor)}</dd>
           </div>
         </dl>
+        <p className="mt-6 font-serif text-sm leading-relaxed text-mountain/70">
+          Free SA shipping over R999. 30-day returns. Packed in George.
+        </p>
         <a
           href={`${WOO_URL.replace(/\/$/, "")}/checkout`}
-          className="mt-6 block bg-earth px-6 py-3 text-center font-display text-lg tracking-[0.18em] text-sand hover:bg-mountain"
+          className="mt-4 block bg-earth px-6 py-3 text-center font-display text-lg tracking-[0.18em] text-sand hover:bg-mountain"
         >
           Checkout
         </a>

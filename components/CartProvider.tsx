@@ -15,7 +15,11 @@ type CartContextValue = {
   cart: WooCart | null;
   loading: boolean;
   refresh: () => Promise<void>;
-  addItem: (id: number, quantity?: number) => Promise<{ ok: boolean; message?: string }>;
+  addItem: (
+    id: number,
+    quantity?: number,
+    extra?: Record<string, unknown>,
+  ) => Promise<{ ok: boolean; message?: string; zeroPrice?: boolean }>;
   updateItem: (key: string, quantity: number) => Promise<void>;
   removeItem: (key: string) => Promise<void>;
 };
@@ -43,11 +47,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [refresh]);
 
   const addItem = useCallback(
-    async (id: number, quantity = 1) => {
+    async (id: number, quantity = 1, extra?: Record<string, unknown>) => {
       const res = await fetch("/api/cart/items", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, quantity }),
+        body: JSON.stringify({ id, quantity, ...(extra ?? {}) }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -56,8 +60,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           message: data?.message || "Could not add to cart",
         };
       }
-      setCart(data as WooCart);
-      return { ok: true };
+      const cart = data as WooCart;
+      setCart(cart);
+      const added = cart.items?.find((item) => item.id === id);
+      const line = Number(added?.prices?.price ?? added?.totals?.line_total ?? 1);
+      return { ok: true, zeroPrice: Number.isFinite(line) && line <= 0 };
     },
     [],
   );
@@ -97,15 +104,18 @@ export function useCart() {
 }
 
 export function CartLink() {
-  const { cart } = useCart();
+  const { cart, loading } = useCart();
   const count = cart?.items_count ?? 0;
+  const showCount = !loading && count > 0;
   return (
     <Link
       href="/cart"
       className="relative font-display text-[15px] tracking-[0.18em] text-sand hover:text-sun"
     >
       Cart
-      <span className="ml-1 text-earth">{String(count).padStart(2, "0")}</span>
+      {showCount ? (
+        <span className="ml-1 text-earth">{String(count).padStart(2, "0")}</span>
+      ) : null}
     </Link>
   );
 }

@@ -1,4 +1,5 @@
 import { WOO_URL } from "./constants";
+import { dedupeCatalog, isGiftCard } from "./catalog";
 import type { WooCategory, WooProduct } from "./types";
 
 const STORE = `${WOO_URL.replace(/\/$/, "")}/wp-json/wc/store/v1`;
@@ -33,12 +34,32 @@ export async function getProducts(params: Record<string, string | number> = {}) 
   }
 }
 
+export async function getProductById(id: number) {
+  try {
+    return await storeFetch<WooProduct>(`/products/${id}`);
+  } catch {
+    return null;
+  }
+}
+
+/** Variations (pretty slugs) resolve to the parent variable product. */
+export async function resolveVariableParent(product: WooProduct) {
+  if (product.type === "variation" && product.parent) {
+    const parent = await getProductById(product.parent);
+    if (parent) return parent;
+  }
+  return product;
+}
+
 export async function getProductBySlug(slug: string) {
   const bySlug = await getProducts({ slug, per_page: 5 });
-  const exact = bySlug.find((p) => p.slug === slug);
-  if (exact) return exact;
-  const products = await getProducts({ search: slug, per_page: 20 });
-  return products.find((p) => p.slug === slug) ?? null;
+  let found: WooProduct | null = bySlug.find((p) => p.slug === slug) ?? null;
+  if (!found) {
+    const products = await getProducts({ search: slug, per_page: 20 });
+    found = products.find((p) => p.slug === slug) ?? null;
+  }
+  if (!found) return null;
+  return resolveVariableParent(found);
 }
 
 export async function getCategories() {
@@ -51,15 +72,23 @@ export async function getCategories() {
   }
 }
 
+export async function getShopProducts(params: Record<string, string | number> = {}) {
+  const products = await getProducts(params);
+  const category = String(params.category ?? "").toLowerCase();
+  const giftShelf = category.includes("gift");
+  return dedupeCatalog(products, { gifts: giftShelf ? "end" : "hide" });
+}
+
 export async function getFeaturedProducts() {
-  const all = await getProducts({ per_page: 100 });
+  const all = await getShopProducts({ per_page: 100 });
   const branded = all.filter((p) => {
+    if (isGiftCard(p)) return false;
     const sku = (p.sku || "").toUpperCase();
     if (!sku.startsWith("OB")) return false;
-    return !p.categories.some((c) => c.slug.includes("gift"));
+    return true;
   });
   const picks = branded.slice(0, 8);
-  return picks.length ? picks : all.slice(0, 8);
+  return picks.length ? picks : all.filter((p) => !isGiftCard(p)).slice(0, 8);
 }
 
 export function variationIdForSize(product: WooProduct, sizeSlug: string) {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ProductGrid } from "@/components/ProductCard";
 import { SHOP_FILTERS, SHOP_GROUPS } from "@/lib/constants";
 import { RANGES, SWYA_DROPS, rangeBySlug } from "@/lib/ranges";
-import { getCategories, getProducts } from "@/lib/woo";
+import { getCategories, getShopProducts } from "@/lib/woo";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -22,7 +22,7 @@ export default async function ShopPage({
   const categories = await getCategories();
   const groupSlugs = group ? SHOP_GROUPS[group] : undefined;
 
-  let products = comingRange ? [] : await getProducts({ per_page: 100 });
+  let products = comingRange ? [] : await getShopProducts({ per_page: 100 });
   if (!comingRange && groupSlugs) {
     const allowed = new Set(groupSlugs);
     products = products.filter((p) =>
@@ -30,7 +30,7 @@ export default async function ShopPage({
     );
   } else if (!comingRange && category) {
     const categoryId = categories.find((c) => c.slug === category)?.id;
-    products = await getProducts({
+    products = await getShopProducts({
       per_page: 100,
       ...(categoryId ? { category: categoryId } : { category }),
     });
@@ -84,7 +84,7 @@ export default async function ShopPage({
                 ? `/shop?group=${filter.group}`
                 : filter.slug
                   ? `/shop?category=${filter.slug}`
-                  : "/shop?range=baseline";
+                  : "/shop";
               const selected = filter.group
                 ? activeGroup === filter.group
                 : !activeGroup &&

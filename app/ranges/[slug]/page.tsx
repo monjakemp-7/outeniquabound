@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProductGrid } from "@/components/ProductCard";
+import { isGiftCard } from "@/lib/catalog";
 import { RANGES, RANGE_SLUGS, SWYA_DROPS, rangeBySlug } from "@/lib/ranges";
+import { getShopProducts } from "@/lib/woo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,6 +27,13 @@ export default async function RangePage({ params }: Props) {
   const { slug } = await params;
   const range = rangeBySlug(slug);
   if (!range) notFound();
+
+  const shelf =
+    range.slug === "baseline"
+      ? (await getShopProducts({ per_page: 100 }))
+          .filter((item) => !isGiftCard(item))
+          .slice(0, 8)
+      : [];
 
   return (
     <div>
@@ -101,7 +111,7 @@ export default async function RangePage({ params }: Props) {
             </Link>
           ) : (
             <Link
-              href="/shop?range=baseline"
+              href="/shop"
               className="bg-mountain px-6 py-3 font-display tracking-[0.18em] text-sand hover:bg-earth"
             >
               Shop Baseline for now
@@ -115,6 +125,22 @@ export default async function RangePage({ params }: Props) {
           </Link>
         </div>
       </section>
+
+      {range.live && shelf.length ? (
+        <section className="mx-auto max-w-6xl px-4 pb-8 md:px-6">
+          <p className="stamp text-forest">On the shelf</p>
+          <h2 className="mt-3 font-display text-4xl">Baseline now</h2>
+          <div className="mt-8">
+            <ProductGrid products={shelf} />
+          </div>
+          <Link
+            href="/shop"
+            className="mt-8 inline-block font-display tracking-[0.16em] text-earth hover:underline"
+          >
+            View all →
+          </Link>
+        </section>
+      ) : null}
 
       <nav className="mx-auto flex max-w-6xl flex-wrap gap-3 px-4 pb-16 md:px-6">
         {RANGES.map((item) => (
