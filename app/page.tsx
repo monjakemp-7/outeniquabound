@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PlanetCommit } from "@/components/PlanetCommit";
 import { ProductGrid } from "@/components/ProductCard";
 import { STICKERS, StickerStamp } from "@/components/StickerStamp";
 import { ASSETS, COPY, HOME_PATHS } from "@/lib/constants";
@@ -9,6 +10,7 @@ import {
   lookbookFrames,
   originStill,
 } from "@/lib/product-imagery";
+import { RANGES } from "@/lib/ranges";
 import { getFeaturedProducts } from "@/lib/woo";
 
 export default async function HomePage() {
@@ -160,6 +162,41 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+        <p className="stamp text-sky">The collection architecture</p>
+        <h2 className="mt-3 font-display text-5xl md:text-6xl">
+          Four ranges
+        </h2>
+        <p className="mt-4 max-w-xl font-serif text-lg text-mountain/75">
+          Perform, represent, express, live. Baseline is on the shelf. The
+          others are coming in — not pretend products.
+        </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {RANGES.map((range) => (
+            <Link
+              key={range.slug}
+              href={range.href}
+              className="group border border-mountain/15 p-5 hover:border-earth"
+            >
+              <p className="stamp text-earth">{range.verb}</p>
+              <h3 className="mt-4 font-display text-3xl">{range.name}</h3>
+              <p className="mt-2 font-serif text-sm leading-relaxed text-mountain/75">
+                {range.summary}
+              </p>
+              <p className="mt-4 font-display text-xs tracking-[0.16em] text-mountain/45">
+                {range.live ? "On the shelf" : "Coming in"}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <Link
+          href="/ranges"
+          className="mt-8 inline-block font-display tracking-[0.16em] text-earth hover:underline"
+        >
+          Read the architecture →
+        </Link>
+      </section>
+
       <section className="relative overflow-hidden">
         <div className="relative min-h-[520px]">
           <Image
@@ -187,6 +224,12 @@ export default async function HomePage() {
               How it works
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-mountain/10 bg-sand">
+        <div className="mx-auto max-w-6xl px-4 py-8 md:px-6">
+          <PlanetCommit />
         </div>
       </section>
 

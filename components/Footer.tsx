@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PlanetCommit } from "@/components/PlanetCommit";
 import { CONTACT, SOCIAL } from "@/lib/constants";
 
 export function Footer() {
@@ -23,6 +24,9 @@ export function Footer() {
             Start where you are. Gear packed in George — bound to the
             Outeniquas, not to polish.
           </p>
+          <div className="mt-5 max-w-md text-sand/85 [&_.stamp]:border-sand/50">
+            <PlanetCommit tone="sand" />
+          </div>
           <p className="mt-4 stamp text-sun">Free shipping over R999</p>
         </div>
         <div>
@@ -33,6 +37,11 @@ export function Footer() {
             <li>
               <Link href="/shop" className="hover:text-sun">
                 Shop
+              </Link>
+            </li>
+            <li>
+              <Link href="/ranges" className="hover:text-sun">
+                Ranges
               </Link>
             </li>
             <li>
@@ -48,6 +57,16 @@ export function Footer() {
             <li>
               <Link href="/size-guide" className="hover:text-sun">
                 Size guide
+              </Link>
+            </li>
+            <li>
+              <Link href="/shipping" className="hover:text-sun">
+                Shipping
+              </Link>
+            </li>
+            <li>
+              <Link href="/returns" className="hover:text-sun">
+                Returns
               </Link>
             </li>
             <li>

@@ -4,11 +4,13 @@ import { notFound } from "next/navigation";
 import { AddToCart } from "@/components/AddToCart";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGrid } from "@/components/ProductCard";
+import { ProductReviews } from "@/components/ProductReviews";
 import { StickerStamp, placeStampForProduct } from "@/components/StickerStamp";
 import { productName, stripHtml } from "@/lib/html";
 import { formatWooPrice } from "@/lib/money";
 import { productCopy } from "@/lib/product-descriptions";
 import { galleryImages } from "@/lib/product-imagery";
+import { placeholderReviews } from "@/lib/reviews";
 import { getFeaturedProducts, getProductBySlug } from "@/lib/woo";
 
 export async function generateMetadata({
@@ -49,6 +51,10 @@ export default async function ProductPage({
       <p className="font-display text-sm tracking-[0.18em] text-forest">
         <Link href="/shop" className="hover:text-earth">
           Shop
+        </Link>
+        <span className="mx-2">/</span>
+        <Link href="/ranges/baseline" className="hover:text-earth">
+          Baseline
         </Link>
         <span className="mx-2">/</span>
         {product.categories[0] ? productName(product.categories[0].name) : "Gear"}
@@ -98,6 +104,7 @@ export default async function ProductPage({
           ) : null}
         </div>
       </div>
+      <ProductReviews reviews={placeholderReviews(product)} />
       {related.length ? (
         <div className="mt-20">
           <h2 className="font-display text-4xl">Along the same trail</h2>

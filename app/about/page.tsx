@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ABOUT_STORY, BRAND_STORY, COPY } from "@/lib/constants";
+import { PlanetCommit } from "@/components/PlanetCommit";
 import { STICKERS, StickerStamp } from "@/components/StickerStamp";
 import { aboutHero, aboutSideStill, storyImages } from "@/lib/product-imagery";
 
@@ -131,6 +132,15 @@ export default function AboutPage() {
               <p className="mt-3 font-serif text-lg leading-relaxed">{item.v}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-y border-mountain/10 bg-sand">
+        <div className="mx-auto max-w-6xl px-4 py-10 md:px-6">
+          <p className="stamp text-earth">The 1%</p>
+          <div className="mt-4 max-w-3xl">
+            <PlanetCommit note />
+          </div>
         </div>
       </section>
 

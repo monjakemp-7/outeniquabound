@@ -10,6 +10,9 @@ export const SOCIAL = {
   facebook: "https://www.facebook.com/profile.php?id=61590929294593",
 };
 
+/** Linked in copy. We do not display the official 1% for the Planet member badge. */
+export const ONE_PERCENT_URL = "https://www.onepercentfortheplanet.org";
+
 export const CONTACT = {
   phone: "044 001 0005",
   email: "support@outeniquabound.com",
@@ -59,9 +62,11 @@ export const COPY = {
   ctaShop: "Shop the collection",
   ctaSecond: "Second Summit",
   trustBar:
-    "Free SA shipping over R999 · Easy returns · Second Summit · George",
+    "Free SA shipping over R999 · 1% of sales · Second Summit · George",
   homeBrandBeat:
     "Packed on Saagmeul Street in George. Named for the ground — Summit, Coastline, Fynbos, Keurberg. Dirtbag gear, meant to get dirty. Used, fixed, shared, used again. Second Summit keeps the good stuff on the trail.",
+  onePercentLead:
+    "We’re committing 1% of sales to environmental impact through",
 };
 
 export const HOME_PATHS: {

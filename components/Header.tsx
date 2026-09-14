@@ -8,6 +8,7 @@ import { CartLink } from "./CartProvider";
 
 const NAV = [
   { href: "/shop", label: "Shop" },
+  { href: "/ranges", label: "Ranges" },
   { href: "/about", label: "About" },
   { href: "/second-summit", label: "Second Summit" },
 ];
