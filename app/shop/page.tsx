@@ -41,7 +41,7 @@ export default async function ShopPage({
   const match = categories.find((c) => c.slug === category);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <div className="mx-auto max-w-6xl px-4 pb-14 pt-20 md:px-6">
       <p className="stamp text-forest">Field store</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">Shop</h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-mountain/75">

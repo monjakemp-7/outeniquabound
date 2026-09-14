@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ShippingPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 md:px-6">
+    <div className="mx-auto max-w-3xl px-4 pb-14 pt-20 md:px-6">
       <p className="stamp text-forest">Policy details to be confirmed</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">Shipping</h1>
       <p className="mt-5 font-serif text-lg leading-relaxed text-mountain/80">

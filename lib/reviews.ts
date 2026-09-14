@@ -138,12 +138,27 @@ const FALLBACK: PlaceholderReview[] = [
 ];
 
 function kindFor(product: WooProduct) {
-  const hay = `${product.name} ${product.slug} ${product.categories.map((c) => c.slug).join(" ")}`.toLowerCase();
+  const cats = product.categories.map((c) => c.slug.toLowerCase()).join(" ");
+  const hay = `${product.name} ${product.slug} ${cats}`.toLowerCase();
+  // Check bottles first: "Kanteen" contains the letters "tee".
+  if (
+    cats.includes("hydrat") ||
+    hay.includes("bottle") ||
+    hay.includes("kanteen")
+  ) {
+    return "bottle";
+  }
   if (hay.includes("hoodie")) return "hoodie";
-  if (hay.includes("tee") || hay.includes("t-shirt") || hay.includes("shirt")) return "tee";
   if (hay.includes("buff")) return "buff";
   if (hay.includes("sock")) return "socks";
-  if (hay.includes("hydrat") || hay.includes("bottle")) return "bottle";
+  if (
+    hay.includes("t-shirt") ||
+    hay.includes("tshirt") ||
+    /\btees?\b/.test(hay) ||
+    hay.includes("shirt")
+  ) {
+    return "tee";
+  }
   return "default";
 }
 

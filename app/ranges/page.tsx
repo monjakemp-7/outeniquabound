@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function RangesPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <div className="mx-auto max-w-6xl px-4 pb-14 pt-20 md:px-6">
       <p className="stamp text-forest">The collection</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">
         Four ranges
