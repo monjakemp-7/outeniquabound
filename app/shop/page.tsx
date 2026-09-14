@@ -43,7 +43,7 @@ export default async function ShopPage({
       <p className="stamp text-forest">Field store</p>
       <h1 className="mt-3 font-display text-6xl md:text-7xl">Shop</h1>
       <p className="mt-4 max-w-2xl font-serif text-lg text-mountain/75">
-        Honest kit for the Outeniquas and everywhere you take them. Free
+        Honest gear for the Outeniquas and everywhere you take them. Free
         shipping over R999.
       </p>
       <div className="mt-8 flex flex-wrap gap-2">

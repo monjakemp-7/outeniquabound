@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ABOUT_STORY, BRAND_STORY, COPY } from "@/lib/constants";
 import { STICKERS, StickerStamp } from "@/components/StickerStamp";
-import { aboutHero, originStill, storyImages } from "@/lib/product-imagery";
+import { aboutHero, aboutSideStill, storyImages } from "@/lib/product-imagery";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Outeniqua Bound was born in the Outeniqua Mountains — dirtbag kit packed in George.",
+    "Outeniqua Bound was born in the Outeniqua Mountains — dirtbag gear packed in George.",
 };
 
 const FIELD_NOTES = [
@@ -20,7 +20,7 @@ const FIELD_NOTES = [
   {
     kicker: "Practice",
     title: "Bound to movement",
-    body: "Dirtbag kit is meant to get dirty. Used, fixed, shared, used again. Wild places aren’t for show. They’re for living in.",
+    body: "Dirtbag gear is meant to get dirty. Used, fixed, shared, used again. Wild places aren’t for show. They’re for living in.",
   },
   {
     kicker: "Pack",
@@ -37,7 +37,7 @@ export default function AboutPage() {
       <section className="relative min-h-[70svh] w-full overflow-hidden bg-mountain text-sand">
         <Image
           src={aboutHero()}
-          alt="Outeniqua landscape"
+          alt="Night camp on the hill"
           fill
           priority
           className="object-cover opacity-60"
@@ -52,18 +52,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-6">
+      <section className="relative isolate mx-auto grid max-w-6xl gap-10 overflow-visible px-4 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-6">
         <StickerStamp
           src={STICKERS.outeniquaBound}
-          className="absolute right-4 top-4 hidden md:block"
+          className="absolute right-6 top-6 hidden md:block"
           rotate={-7}
-          size={90}
+          size={118}
         />
         <StickerStamp
           src={STICKERS.sevenPasses}
-          className="absolute -left-3 top-10 hidden lg:block"
+          className="absolute right-6 top-24 hidden lg:block"
           rotate={10}
-          size={74}
+          size={104}
         />
         <div>
           <p className="stamp text-earth">The ground</p>
@@ -97,10 +97,10 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-        <div className="relative min-h-[420px] overflow-hidden">
+        <div className="relative z-0 min-h-[420px] overflow-hidden">
           <Image
-            src={originStill()}
-            alt="On the Outeniqua ridge"
+            src={aboutSideStill()}
+            alt="Gear on the hill"
             fill
             className="object-cover"
             sizes="40vw"
@@ -121,7 +121,7 @@ export default function AboutPage() {
             },
             {
               k: "Promise",
-              v: "Free shipping over R999. Second Summit for circular kit at Trail Kiosk.",
+              v: "Free shipping over R999. Second Summit for circular gear at Trail Kiosk.",
             },
           ].map((item) => (
             <div key={item.k} className="border border-sand/20 p-6">
@@ -135,30 +135,30 @@ export default function AboutPage() {
       </section>
 
       {stills.length ? (
-        <section className="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+        <section className="relative isolate mx-auto max-w-6xl overflow-visible px-4 py-16 md:px-6">
           <StickerStamp
             src={STICKERS.leakyDam}
-            className="absolute right-0 top-8 hidden md:block"
+            className="absolute right-2 top-10 hidden md:block"
             rotate={9}
-            size={78}
+            size={110}
           />
           <StickerStamp
             src={STICKERS.dizzyHeights}
-            className="absolute left-2 bottom-8 hidden lg:block"
+            className="absolute left-3 bottom-10 hidden lg:block"
             rotate={-10}
-            size={72}
+            size={108}
           />
           <StickerStamp
             src={STICKERS.apieSwaai}
-            className="absolute right-8 bottom-24 hidden lg:block"
+            className="absolute right-10 bottom-28 hidden lg:block"
             rotate={6}
-            size={68}
+            size={100}
           />
           <StickerStamp
             src={STICKERS.yellowWood}
-            className="absolute left-1/3 top-4 hidden xl:block"
+            className="absolute left-[28%] top-6 hidden xl:block"
             rotate={-7}
-            size={64}
+            size={112}
             opacity={0.95}
           />
           <p className="stamp text-forest">From the field</p>
@@ -174,7 +174,7 @@ export default function AboutPage() {
                   className="grid items-center gap-8 md:grid-cols-2"
                 >
                   <div
-                    className={`relative aspect-[4/5] overflow-hidden ${reverse ? "md:order-2" : ""}`}
+                    className={`relative z-0 aspect-[4/5] overflow-hidden ${reverse ? "md:order-2" : ""}`}
                   >
                     <Image
                       src={src}

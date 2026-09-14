@@ -26,7 +26,7 @@ export function CartView() {
       <div className="border border-mountain/15 bg-sand p-10 text-center">
         <p className="font-display text-4xl">The pack is empty</p>
         <p className="mt-3 font-serif text-mountain/70">
-          Start where you are. The trail kit is on the shop floor.
+          Start where you are. The collection is on the shop floor.
         </p>
         <Link
           href="/shop"

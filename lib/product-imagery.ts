@@ -208,7 +208,11 @@ export function homepageStrip(): string[] {
 }
 
 export function storyImages() {
-  return homepageStrip().slice(0, 4);
+  return [
+    LIFESTYLE.womensHoodieGraphic,
+    LIFESTYLE.mensTeeDark,
+    LIFESTYLE.gearDuffel,
+  ].filter(assetOnDisk);
 }
 
 export function lookbookFrames() {
@@ -218,15 +222,16 @@ export function lookbookFrames() {
       label: frame.label,
       href: frame.href,
       src: src === ASSETS.midLifestyle ? ASSETS.womensHoodies : src,
+      objectPosition: frame.objectPosition,
     };
   }).slice(0, 6);
 }
 
 export function originStill() {
   return (
-    present(LIFESTYLE.womensHoodieRidge) ??
-    present(LIFESTYLE.womensHoodieCoastline) ??
-    ASSETS.womensHoodies
+    present(LIFESTYLE.storyRidge) ??
+    present(LIFESTYLE.gearDuffel) ??
+    ASSETS.heroStill
   );
 }
 
@@ -235,9 +240,13 @@ export function heroPoster() {
 }
 
 export function aboutHero() {
+  return present(LIFESTYLE.heroCampfire) ?? ASSETS.heroStill;
+}
+
+export function aboutSideStill() {
   return (
-    present(LIFESTYLE.womensHoodieRidge) ??
-    present(LIFESTYLE.womensHoodieCoastline) ??
+    present(LIFESTYLE.gearDuffel) ??
+    present(LIFESTYLE.womensHoodieGraphic) ??
     ASSETS.heroStill
   );
 }

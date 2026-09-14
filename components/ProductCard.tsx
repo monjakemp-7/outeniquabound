@@ -26,7 +26,7 @@ export function ProductCard({ product }: { product: WooProduct }) {
           </div>
         )}
         <span className="absolute left-3 top-3 stamp bg-sand/90 text-mountain">
-          {image?.kind === "lifestyle" ? "On the trail" : "Field kit"}
+          {image?.kind === "lifestyle" ? "On the trail" : "Baseline"}
         </span>
       </div>
       <div className="mt-3 flex items-baseline justify-between gap-3">

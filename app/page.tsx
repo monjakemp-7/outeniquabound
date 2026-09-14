@@ -62,14 +62,14 @@ export default async function HomePage() {
         </p>
       </section>
 
-      <section className="relative bg-mountain py-20 text-sand">
+      <section className="relative isolate overflow-visible bg-mountain py-20 text-sand">
         <StickerStamp
           src={STICKERS.outeniquaBound}
-          className="absolute right-4 top-6 hidden lg:block"
+          className="absolute right-6 top-8 hidden lg:block"
           rotate={-9}
-          size={88}
+          size={120}
         />
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="relative z-0 mx-auto max-w-6xl px-4 md:px-6">
           <p className="stamp text-sky">01 · Paths</p>
           <h2 className="mt-3 font-display text-5xl md:text-6xl">
             Shop the field
@@ -79,7 +79,7 @@ export default async function HomePage() {
               <Link
                 key={path.label}
                 href={path.href}
-                className="group relative aspect-[4/3] overflow-hidden"
+                className="group relative z-0 aspect-[4/3] overflow-hidden"
               >
                 <Image
                   src={categoryTileSrc(path.image, path.fallback)}
@@ -87,6 +87,11 @@ export default async function HomePage() {
                   fill
                   sizes="(min-width: 1024px) 25vw, 50vw"
                   className="object-cover transition duration-500 group-hover:scale-105"
+                  style={
+                    path.objectPosition
+                      ? { objectPosition: path.objectPosition }
+                      : undefined
+                  }
                 />
                 <div className="absolute inset-0 bg-mountain/35 group-hover:bg-mountain/20" />
                 <span className="absolute inset-x-0 bottom-0 p-4 font-display text-2xl tracking-[0.08em]">
@@ -98,16 +103,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-6xl px-4 py-20 md:px-6">
+      <section className="relative isolate mx-auto max-w-6xl overflow-visible px-4 py-20 md:px-6">
         <StickerStamp
           src={STICKERS.obMark}
-          className="absolute -right-1 -top-3 hidden lg:block"
+          className="absolute -right-1 -top-2 hidden lg:block"
           rotate={-7}
-          size={70}
+          size={104}
         />
-        <div className="mb-8 flex items-end justify-between gap-4">
+        <div className="relative z-0 mb-8 flex items-end justify-between gap-4">
           <div>
-            <p className="stamp text-forest">02 · Kit</p>
+            <p className="stamp text-forest">02 · Collection</p>
             <h2 className="mt-3 font-display text-5xl md:text-6xl">
               Featured products
             </h2>
@@ -122,17 +127,17 @@ export default async function HomePage() {
         <ProductGrid products={featured} />
       </section>
 
-      <section className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 md:grid-cols-2 md:px-6">
+      <section className="relative isolate mx-auto grid max-w-6xl items-center gap-10 overflow-visible px-4 py-20 md:grid-cols-2 md:px-6">
         <StickerStamp
           src={STICKERS.yellowWood}
-          className="absolute -left-2 top-8 hidden md:block"
+          className="absolute left-4 top-16 hidden md:block"
           rotate={-11}
-          size={80}
+          size={120}
         />
-        <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="relative z-0 aspect-[4/5] overflow-hidden">
           <Image
             src={originStill()}
-            alt="On the Outeniqua ridge"
+            alt="Outeniqua ridge at last light"
             fill
             sizes="50vw"
             className="object-cover"
@@ -186,32 +191,32 @@ export default async function HomePage() {
       </section>
 
       {lookbook.length ? (
-        <section className="relative mx-auto max-w-6xl px-4 py-20 md:px-6">
+        <section className="relative isolate mx-auto max-w-6xl overflow-visible px-4 py-20 md:px-6">
           <StickerStamp
             src={STICKERS.georgePeak}
-            className="absolute right-2 top-10 hidden md:block"
+            className="absolute right-3 top-28 hidden md:block"
             rotate={12}
-            size={76}
+            size={112}
           />
           <StickerStamp
             src={STICKERS.pepsiPools}
-            className="absolute -left-1 bottom-10 hidden lg:block"
+            className="absolute left-3 bottom-8 hidden lg:block"
             rotate={-6}
-            size={70}
+            size={118}
           />
           <p className="stamp text-forest">05 · Worn</p>
           <h2 className="mt-3 font-display text-5xl md:text-6xl">
             On the hill
           </h2>
           <p className="mt-4 max-w-xl font-serif text-lg text-mountain/75">
-            Kit in the weather. Tap through to the piece or the shelf.
+            Pieces in the weather. Tap through to the piece or the shelf.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="relative z-0 mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {lookbook.map((frame) => (
               <Link
                 key={frame.href + frame.label}
                 href={frame.href}
-                className="group relative aspect-[4/5] overflow-hidden"
+                className="group relative z-0 aspect-[4/5] overflow-hidden"
               >
                 <Image
                   src={frame.src}
@@ -219,6 +224,11 @@ export default async function HomePage() {
                   fill
                   sizes="(min-width: 1024px) 33vw, 50vw"
                   className="object-cover transition duration-500 group-hover:scale-105"
+                  style={
+                    frame.objectPosition
+                      ? { objectPosition: frame.objectPosition }
+                      : undefined
+                  }
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-mountain/70 via-transparent to-transparent" />
                 <span className="absolute inset-x-0 bottom-0 p-4 font-display text-2xl tracking-[0.08em] text-sand">

@@ -55,13 +55,13 @@ export const COPY = {
   heroLine1: "Start where",
   heroLine2: "you are",
   heroSupport:
-    "Trail kit for Outeniqua days — from the first hill behind your house to the long ridge.",
-  ctaShop: "Shop the field kit",
+    "Trail gear for Outeniqua days — from the first hill behind your house to the long ridge.",
+  ctaShop: "Shop the collection",
   ctaSecond: "Second Summit",
   trustBar:
     "Free SA shipping over R999 · Easy returns · Second Summit · George",
   homeBrandBeat:
-    "Packed on Saagmeul Street in George. Named for the ground — Summit, Coastline, Fynbos, Keurberg. Dirtbag kit, meant to get dirty. Used, fixed, shared, used again. Second Summit keeps the good stuff on the trail.",
+    "Packed on Saagmeul Street in George. Named for the ground — Summit, Coastline, Fynbos, Keurberg. Dirtbag gear, meant to get dirty. Used, fixed, shared, used again. Second Summit keeps the good stuff on the trail.",
 };
 
 export const HOME_PATHS: {
@@ -69,6 +69,7 @@ export const HOME_PATHS: {
   href: string;
   image: string;
   fallback?: string;
+  objectPosition?: string;
 }[] = [
   {
     label: "Men",
@@ -79,13 +80,13 @@ export const HOME_PATHS: {
   {
     label: "Women",
     href: "/shop?category=womens",
-    image: "/images/lifestyle/womens-hoodie-ridge.jpg",
+    image: "/images/lifestyle/womens-hoodie-graphic-socks.jpg",
     fallback: ASSETS.womensHoodies,
   },
   {
     label: "Buffs & socks",
     href: "/shop?group=buffs-socks",
-    image: ASSETS.mensBuffs,
+    image: ASSETS.mensSocks,
   },
   {
     label: "Hydration",
@@ -99,6 +100,7 @@ export const LOOKBOOK_FRAMES: {
   href: string;
   image: string;
   fallback: string;
+  objectPosition?: string;
 }[] = [
   {
     label: "Summit hoodie",
@@ -119,7 +121,7 @@ export const LOOKBOOK_FRAMES: {
     fallback: ASSETS.mensTees,
   },
   {
-    label: "Women’s kit",
+    label: "Women",
     href: "/shop?category=womens",
     image: "/images/lifestyle/womens-hoodie-ridge.jpg",
     fallback: ASSETS.womensHoodies,
@@ -135,6 +137,7 @@ export const LOOKBOOK_FRAMES: {
     href: "/shop?category=buffs",
     image: ASSETS.mensBuffs,
     fallback: ASSETS.mensBuffs,
+    objectPosition: "100% 50%",
   },
 ];
 
@@ -168,5 +171,5 @@ export const BRAND_STORY = `Outeniqua Bound started in the Outeniquas above Geor
 export const ABOUT_STORY = [
   "The Outeniquas sit above George and they don’t perform for anyone. You just start walking. Fynbos underfoot. A long ridge when you’re ready for it. The first hill behind the house counts.",
   "We pack from 1 Saagmeul Street: hoodies, tees, buffs, socks, bottles. Names from the ground — Summit, Traverse, Heritage, Coastline, Moonrise, Contour, Geelhout, Keurberg, Fynbos.",
-  "Dirtbag kit is meant to get dirty. Second Summit at Trail Kiosk takes gear back, grades it honestly, and sends it out again. Circular on purpose. Bound to movement, not to polish.",
+  "Dirtbag gear is meant to get dirty. Second Summit at Trail Kiosk takes gear back, grades it honestly, and sends it out again. Circular on purpose. Bound to movement, not to polish.",
 ];

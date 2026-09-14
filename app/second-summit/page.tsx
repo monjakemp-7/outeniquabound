@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "Second Summit",
   description:
-    "Give gear a second life. Outeniqua Bound’s circular system for selling and buying trail kit in George.",
+    "Give gear a second life. Outeniqua Bound’s circular system for selling and buying trail gear in George.",
 };
 
 const GRADES = [
@@ -76,24 +76,24 @@ export default function SecondSummitPage() {
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="relative isolate mx-auto max-w-6xl overflow-visible px-4 py-16 md:px-6">
         <StickerStamp
           src={STICKERS.secondSummit}
-          className="absolute right-4 -top-4 hidden md:block"
+          className="absolute right-4 -top-2 hidden md:block"
           rotate={-8}
-          size={96}
+          size={120}
         />
         <StickerStamp
           src={STICKERS.outeniquaBound}
-          className="absolute -left-2 bottom-4 hidden lg:block"
+          className="absolute -left-1 bottom-6 hidden lg:block"
           rotate={7}
-          size={80}
+          size={110}
         />
         <StickerStamp
           src={STICKERS.obMark}
-          className="absolute right-24 bottom-8 hidden lg:block"
+          className="absolute right-24 bottom-10 hidden lg:block"
           rotate={10}
-          size={64}
+          size={96}
           opacity={0.95}
         />
         <div className="grid gap-10 md:grid-cols-2">
@@ -105,12 +105,12 @@ export default function SecondSummitPage() {
               assess every item, grade it clearly, and rehome it with someone
               who’ll put it to work again. Drop-offs currently in person only —
               Trail Kiosk pod (George) or selected expo booths. The mountain
-              belongs to more people when good kit stays in circulation.
+              belongs to more people when good gear stays in circulation.
             </p>
           </div>
           <div>
             <p className="stamp text-sky">Buy for your Second Summit</p>
-            <h2 className="mt-3 font-display text-4xl">Kit with life left</h2>
+            <h2 className="mt-3 font-display text-4xl">Gear with life left</h2>
             <p className="mt-4 font-serif text-lg leading-relaxed text-mountain/80">
               Choose graded gear with plenty of life left. A smarter buy for
               you, a lighter footprint for the hills. Less new production.
@@ -147,18 +147,18 @@ export default function SecondSummitPage() {
         </div>
       </section>
 
-      <section className="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+      <section className="relative isolate mx-auto max-w-6xl overflow-visible px-4 py-16 md:px-6">
         <StickerStamp
           src={STICKERS.pepsiPools}
-          className="absolute right-6 -top-2 hidden md:block"
+          className="absolute right-6 -top-1 hidden md:block"
           rotate={-11}
-          size={70}
+          size={110}
         />
         <StickerStamp
           src={STICKERS.tonnelbos}
-          className="absolute left-0 bottom-6 hidden lg:block"
+          className="absolute left-1 bottom-8 hidden lg:block"
           rotate={8}
-          size={74}
+          size={108}
         />
         <h2 className="font-display text-5xl">Step by step</h2>
         <ol className="mt-8 grid gap-4 md:grid-cols-5">
@@ -175,7 +175,7 @@ export default function SecondSummitPage() {
           href="/shop"
           className="mt-10 inline-block bg-mountain px-6 py-3 font-display tracking-[0.18em] text-sand hover:bg-earth"
         >
-          Shop new kit while you wait
+          Shop the collection while you wait
         </Link>
       </section>
     </div>

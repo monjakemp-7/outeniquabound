@@ -89,7 +89,7 @@ export default function SizeGuidePage() {
         href="/shop"
         className="mt-12 inline-block bg-mountain px-6 py-3 font-display tracking-[0.18em] text-sand hover:bg-earth"
       >
-        Back to the field kit
+        Back to the shop
       </Link>
     </div>
   );

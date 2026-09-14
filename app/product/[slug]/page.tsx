@@ -51,7 +51,7 @@ export default async function ProductPage({
           Shop
         </Link>
         <span className="mx-2">/</span>
-        {product.categories[0] ? productName(product.categories[0].name) : "Kit"}
+        {product.categories[0] ? productName(product.categories[0].name) : "Gear"}
       </p>
       <div className="mt-6 grid items-start gap-10 md:grid-cols-2">
         <ProductGallery images={galleryImages(product)} name={name} />
@@ -59,9 +59,9 @@ export default async function ProductPage({
           {stamp ? (
             <StickerStamp
               src={stamp}
-              className="absolute right-0 -top-14 hidden md:block"
+              className="absolute right-0 -top-16 hidden md:block"
               rotate={11}
-              size={64}
+              size={88}
             />
           ) : null}
           <h1 className={`font-display text-5xl leading-none md:text-6xl ${stamp ? "md:pr-20" : ""}`}>

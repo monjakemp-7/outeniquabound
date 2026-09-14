@@ -20,7 +20,7 @@ export function Footer() {
             </p>
           </div>
           <p className="mt-4 max-w-md font-serif text-lg leading-relaxed text-sand/80">
-            Start where you are. Trail kit packed in George — bound to the
+            Start where you are. Gear packed in George — bound to the
             Outeniquas, not to polish.
           </p>
           <p className="mt-4 stamp text-sun">Free shipping over R999</p>

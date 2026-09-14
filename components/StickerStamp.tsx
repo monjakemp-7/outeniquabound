@@ -33,7 +33,7 @@ export function StickerStamp({
   src,
   className = "",
   rotate = -8,
-  size = 92,
+  size = 112,
   opacity = 1,
 }: {
   src: string;
@@ -52,7 +52,7 @@ export function StickerStamp({
       aria-hidden
       draggable={false}
       unoptimized
-      className={`pointer-events-none select-none object-contain ${className}`}
+      className={`pointer-events-none z-20 select-none object-contain ${className}`}
       style={{ transform: `rotate(${rotate}deg)`, opacity }}
     />
   );
