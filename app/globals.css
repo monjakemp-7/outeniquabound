@@ -23,7 +23,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
 }
 
 body {
@@ -31,6 +30,11 @@ body {
   color: var(--mountain);
   font-family: var(--font-body), "Libre Baskerville", Georgia, serif;
   min-height: 100%;
+}
+
+header,
+main,
+footer {
   overflow-x: clip;
 }
 

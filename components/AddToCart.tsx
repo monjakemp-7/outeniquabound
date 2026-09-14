@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ProductTrust } from "./ProductTrust";
 import { useCart } from "./CartProvider";
 import {
@@ -49,15 +50,20 @@ export function AddToCart({ product }: { product: WooProduct }) {
     "idle",
   );
   const [message, setMessage] = useState("");
-  const boxRef = useRef<HTMLDivElement>(null);
+  const atcRef = useRef<HTMLButtonElement>(null);
   const [away, setAway] = useState(false);
+  const [portal, setPortal] = useState(false);
 
   useEffect(() => {
-    const node = boxRef.current;
+    setPortal(true);
+  }, []);
+
+  useEffect(() => {
+    const node = atcRef.current;
     if (!node) return;
     const io = new IntersectionObserver(
       ([entry]) => setAway(!entry.isIntersecting),
-      { rootMargin: "-72px 0px 0px 0px", threshold: 0 },
+      { threshold: 0 },
     );
     io.observe(node);
     return () => io.disconnect();
@@ -121,9 +127,22 @@ export function AddToCart({ product }: { product: WooProduct }) {
   }
 
   const stickyVisible = away;
+  const stickyBar =
+    stickyVisible && portal ? (
+      <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-sand/20 bg-mountain p-3 md:hidden">
+        <button
+          type="button"
+          onClick={() => void onAdd()}
+          disabled={status === "loading"}
+          className="w-full bg-earth px-6 py-3 font-display text-lg tracking-[0.18em] text-sand disabled:opacity-60"
+        >
+          {status === "loading" ? "Packing…" : "Add to cart"}
+        </button>
+      </div>
+    ) : null;
 
   return (
-    <div ref={boxRef} className="space-y-4">
+    <div className="space-y-4">
       {gift ? (
         <fieldset>
           <legend className="font-display text-sm tracking-[0.2em] text-forest">
@@ -224,6 +243,7 @@ export function AddToCart({ product }: { product: WooProduct }) {
         />
       </div>
       <button
+        ref={atcRef}
         type="button"
         onClick={() => void onAdd()}
         disabled={status === "loading"}
@@ -251,19 +271,7 @@ export function AddToCart({ product }: { product: WooProduct }) {
         </p>
       ) : null}
       <ProductTrust product={product} />
-
-      {stickyVisible ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand/20 bg-mountain p-3 md:hidden">
-          <button
-            type="button"
-            onClick={() => void onAdd()}
-            disabled={status === "loading"}
-            className="w-full bg-earth px-6 py-3 font-display text-lg tracking-[0.18em] text-sand disabled:opacity-60"
-          >
-            {status === "loading" ? "Packing…" : "Add to cart"}
-          </button>
-        </div>
-      ) : null}
+      {stickyBar ? createPortal(stickyBar, document.body) : null}
     </div>
   );
 }
