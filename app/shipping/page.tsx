@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Shipping",
   description:
-    "Free SA shipping over R999. Packed in George. Metro runs typically 2–5 business days.",
+    "Free SA shipping over R999. Under that, a SA courier charge is added at checkout. Packed in George. Metro runs typically 2–5 business days.",
 };
 
 export default function ShippingPage() {
@@ -28,7 +28,12 @@ export default function ShippingPage() {
       <section className="mt-12">
         <h2 className="font-display text-4xl">Cost</h2>
         <p className="mt-4 font-serif leading-relaxed text-mountain/80">
-          Free SA shipping over R999. Under that, postage is added at checkout.
+          Free SA shipping over R999. A hoodie on its own already clears it.
+        </p>
+        <p className="mt-4 font-serif leading-relaxed text-mountain/80">
+          Under R999, a SA courier charge is added at checkout for your
+          address — you see the amount before you pay. Postage follows the
+          route, so we don’t print a single flat rand figure here.
         </p>
       </section>
 
