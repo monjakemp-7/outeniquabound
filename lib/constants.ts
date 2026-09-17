@@ -60,9 +60,13 @@ export const COPY = {
   heroSupport:
     "Trail gear for Outeniqua days — from the first hill behind your house to the long ridge.",
   ctaShop: "Shop the collection",
+  ctaQuiz: "Find your kit",
   ctaSecond: "Second Summit",
   trustBar:
     "Free SA shipping over R999 · 1% of sales · Second Summit · George",
+  shippingFree: "Free SA shipping over R999",
+  shippingUnder:
+    "Under R999, a SA courier charge is added at checkout for your address — you see the amount before you pay.",
   homeBrandBeat:
     "Packed on Saagmeul Street in George. Named for the ground — Summit, Coastline, Fynbos, Keurberg. Dirtbag gear, meant to get dirty. Used, fixed, shared, used again. Second Summit keeps the good stuff on the trail.",
   onePercentLead:
@@ -97,52 +101,6 @@ export const HOME_PATHS: {
     label: "Hydration",
     href: "/shop?category=hydration",
     image: ASSETS.hydration,
-  },
-];
-
-export const LOOKBOOK_FRAMES: {
-  label: string;
-  href: string;
-  image: string;
-  fallback: string;
-  objectPosition?: string;
-}[] = [
-  {
-    label: "Summit hoodie",
-    href: "/product/ob00003-blac",
-    image: "/images/lifestyle/mens-hoodie-summit.jpg",
-    fallback: ASSETS.mensHoodies,
-  },
-  {
-    label: "Coastline hoodie",
-    href: "/product/ob00005-sand",
-    image: "/images/lifestyle/womens-hoodie-coastline.jpg",
-    fallback: ASSETS.womensHoodies,
-  },
-  {
-    label: "Men’s tees",
-    href: "/shop?category=t-shirts-clothing",
-    image: "/images/lifestyle/mens-tee-dark.jpg",
-    fallback: ASSETS.mensTees,
-  },
-  {
-    label: "Women",
-    href: "/shop?category=womens",
-    image: "/images/lifestyle/womens-hoodie-ridge.jpg",
-    fallback: ASSETS.womensHoodies,
-  },
-  {
-    label: "Hydration",
-    href: "/shop?category=hydration",
-    image: ASSETS.hydration,
-    fallback: ASSETS.hydration,
-  },
-  {
-    label: "Buffs",
-    href: "/shop?category=buffs",
-    image: ASSETS.mensBuffs,
-    fallback: ASSETS.mensBuffs,
-    objectPosition: "100% 50%",
   },
 ];
 

@@ -15,8 +15,8 @@ export function FreeShippingBar({
       <div className="flex items-center justify-between gap-3">
         <p className="font-display text-sm tracking-[0.16em]">
           {qualified
-            ? "Free shipping unlocked"
-            : `${formatMinor(remaining, minorUnit)} to free shipping`}
+            ? "Free SA shipping unlocked"
+            : `Add ${formatMinor(remaining, minorUnit)} more for free SA shipping`}
         </p>
         <span className="stamp text-forest">R999</span>
       </div>
@@ -26,6 +26,12 @@ export function FreeShippingBar({
           style={{ width: `${pct}%` }}
         />
       </div>
+      {qualified ? null : (
+        <p className="mt-2 font-serif text-sm text-mountain/65">
+          Under R999, a SA courier charge is added at checkout for your
+          address — you see the amount before you pay.
+        </p>
+      )}
     </div>
   );
 }

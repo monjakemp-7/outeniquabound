@@ -40,6 +40,16 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/quiz" className="hover:text-sun">
+                Kit quiz
+              </Link>
+            </li>
+            <li>
+              <Link href="/lookbook" className="hover:text-sun">
+                Lookbook
+              </Link>
+            </li>
+            <li>
               <Link href="/ranges" className="hover:text-sun">
                 Ranges
               </Link>

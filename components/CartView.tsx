@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FreeShippingBar } from "@/components/FreeShippingBar";
+import { PaymentTrust } from "@/components/PaymentTrust";
 import { useCart } from "@/components/CartProvider";
-import { WOO_URL } from "@/lib/constants";
+import { COPY, WOO_URL } from "@/lib/constants";
 import { productName } from "@/lib/html";
 import { formatMinor } from "@/lib/money";
 
@@ -23,12 +24,20 @@ export function CartView() {
         <p className="mt-3 font-serif text-mountain/70">
           Start where you are. The collection is on the shop floor.
         </p>
-        <Link
-          href="/shop"
-          className="mt-6 inline-block bg-earth px-6 py-3 font-display tracking-[0.18em] text-sand"
-        >
-          Shop
-        </Link>
+        <div className="mt-6 flex flex-col items-center gap-3">
+          <Link
+            href="/shop"
+            className="inline-block bg-earth px-6 py-3 font-display tracking-[0.18em] text-sand"
+          >
+            Shop
+          </Link>
+          <Link
+            href="/quiz"
+            className="font-display tracking-[0.16em] text-earth hover:underline"
+          >
+            Or find a kit
+          </Link>
+        </div>
       </div>
     );
   }
@@ -131,8 +140,10 @@ export function CartView() {
           </div>
         </dl>
         <p className="mt-6 font-serif text-sm leading-relaxed text-mountain/70">
-          Free SA shipping over R999. 30-day returns. Packed in George.
+          {COPY.shippingFree}. {COPY.shippingUnder} 30-day returns. Packed in
+          George.
         </p>
+        <PaymentTrust compact />
         <a
           href={`${WOO_URL.replace(/\/$/, "")}/checkout`}
           className="mt-4 block bg-earth px-6 py-3 text-center font-display text-lg tracking-[0.18em] text-sand hover:bg-mountain"

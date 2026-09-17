@@ -3,20 +3,29 @@ import Link from "next/link";
 import { PlanetCommit } from "@/components/PlanetCommit";
 import { ProductGrid } from "@/components/ProductCard";
 import { STICKERS, StickerStamp } from "@/components/StickerStamp";
+import { LookbookGrid } from "@/components/LookbookGrid";
 import { ASSETS, COPY, HOME_PATHS } from "@/lib/constants";
+import { resolveLookbook } from "@/lib/lookbook";
 import {
+  cardPrimary,
   categoryTileSrc,
   heroPoster,
-  lookbookFrames,
   originStill,
 } from "@/lib/product-imagery";
 import { RANGES } from "@/lib/ranges";
 import { SAMPLE_QUOTES } from "@/lib/reviews";
-import { getFeaturedProducts } from "@/lib/woo";
+import { getFeaturedProducts, getShopProducts } from "@/lib/woo";
 
 export default async function HomePage() {
-  const featured = await getFeaturedProducts();
-  const lookbook = lookbookFrames();
+  const [featured, catalog] = await Promise.all([
+    getFeaturedProducts(),
+    getShopProducts({ per_page: 100 }),
+  ]);
+  const lookbook = resolveLookbook(
+    catalog,
+    (product) => cardPrimary(product)?.src,
+    { limit: 4 },
+  );
 
   return (
     <div>
@@ -48,6 +57,12 @@ export default async function HomePage() {
               className="bg-earth px-6 py-3 font-display text-lg tracking-[0.18em] text-sand hover:bg-sun hover:text-mountain"
             >
               {COPY.ctaShop}
+            </Link>
+            <Link
+              href="/quiz"
+              className="border border-sand/40 px-6 py-3 font-display text-lg tracking-[0.18em] hover:border-sun hover:text-sun"
+            >
+              {COPY.ctaQuiz}
             </Link>
             <Link
               href="/second-summit"
@@ -128,6 +143,25 @@ export default async function HomePage() {
           </Link>
         </div>
         <ProductGrid products={featured} />
+      </section>
+
+      <section className="border-y border-mountain/10 bg-mountain text-sand">
+        <div className="mx-auto max-w-6xl px-4 py-16 md:px-6">
+          <p className="stamp text-sky">Start where you are</p>
+          <h2 className="mt-3 font-display text-5xl md:text-6xl">
+            Find your kit
+          </h2>
+          <p className="mt-4 max-w-xl font-serif text-lg text-sand/80">
+            Who you’re packing for, the air, the distance, the mark on the
+            chest. Four questions. A small kit from the shelf.
+          </p>
+          <Link
+            href="/quiz"
+            className="mt-8 inline-block bg-earth px-6 py-3 font-display tracking-[0.18em] text-sand hover:bg-sun hover:text-mountain"
+          >
+            {COPY.ctaQuiz}
+          </Link>
+        </div>
       </section>
 
       <section className="relative isolate mx-auto grid max-w-6xl items-center gap-10 overflow-visible px-4 py-20 md:grid-cols-2 md:px-6">
@@ -275,34 +309,18 @@ export default async function HomePage() {
             On the hill
           </h2>
           <p className="mt-4 max-w-xl font-serif text-lg text-mountain/75">
-            Pieces in the weather. Tap through to the piece or the shelf.
+            Pieces in the weather. Each frame is a small kit — hoodie, tee,
+            buff, socks — from what’s in stock.
           </p>
-          <div className="relative z-0 mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {lookbook.map((frame) => (
-              <Link
-                key={frame.href + frame.label}
-                href={frame.href}
-                className="group relative z-0 aspect-[4/5] overflow-hidden"
-              >
-                <Image
-                  src={frame.src}
-                  alt={frame.label}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, 50vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                  style={
-                    frame.objectPosition
-                      ? { objectPosition: frame.objectPosition }
-                      : undefined
-                  }
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-mountain/70 via-transparent to-transparent" />
-                <span className="absolute inset-x-0 bottom-0 p-4 font-display text-2xl tracking-[0.08em] text-sand">
-                  {frame.label}
-                </span>
-              </Link>
-            ))}
+          <div className="relative z-0 mt-10">
+            <LookbookGrid frames={lookbook} compact />
           </div>
+          <Link
+            href="/lookbook"
+            className="mt-8 inline-block font-display tracking-[0.16em] text-earth hover:underline"
+          >
+            All the frames →
+          </Link>
         </section>
       ) : null}
     </div>

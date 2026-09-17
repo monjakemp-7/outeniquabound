@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { ASSETS, LOOKBOOK_FRAMES } from "./constants";
+import { ASSETS } from "./constants";
 import type { WooImage, WooProduct } from "./types";
 
 /**
@@ -222,18 +222,6 @@ export function storyImages() {
     LIFESTYLE.mensTeeDark,
     LIFESTYLE.gearDuffel,
   ].filter(assetOnDisk);
-}
-
-export function lookbookFrames() {
-  return LOOKBOOK_FRAMES.map((frame) => {
-    const src = present(frame.image) ?? frame.fallback;
-    return {
-      label: frame.label,
-      href: frame.href,
-      src: src === ASSETS.midLifestyle ? ASSETS.womensHoodies : src,
-      objectPosition: frame.objectPosition,
-    };
-  }).slice(0, 6);
 }
 
 export function originStill() {

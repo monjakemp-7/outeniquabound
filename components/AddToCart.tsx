@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ProductTrust } from "./ProductTrust";
+import { FitNote } from "./FitNote";
 import { useCart } from "./CartProvider";
 import {
   GIFT_AMOUNTS,
@@ -15,6 +16,7 @@ import {
   isHiddenSizeSlug,
 } from "@/lib/catalog";
 import { variationIdForSize } from "@/lib/woo";
+import { fitNoteFor } from "@/lib/fit";
 import type { WooProduct } from "@/lib/types";
 
 const SIZE_ORDER = ["xs", "s", "m", "l", "xl", "xxl", "xxxl", "4-7", "8-12", "ns", "os"];
@@ -127,6 +129,7 @@ export function AddToCart({ product }: { product: WooProduct }) {
   }
 
   const stickyVisible = away;
+  const fit = fitNoteFor(product);
   const stickyBar =
     stickyVisible && portal ? (
       <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-sand/20 bg-mountain p-3 md:hidden">
@@ -228,6 +231,7 @@ export function AddToCart({ product }: { product: WooProduct }) {
           </div>
         </fieldset>
       ) : null}
+      {fit ? <FitNote note={fit} /> : null}
       <div className="flex items-center gap-3">
         <label className="font-display text-sm tracking-[0.2em]" htmlFor="qty">
           Qty
